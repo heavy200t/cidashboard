@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FailsafeReport} from './failsafe-reports';
-import {MongoService} from './mongo.service';
+import {FailsafeReport} from './dataModel/failsafe-reports';
+import {MongoService} from './services/mongo.service';
 
 @Component({
   selector: 'app-root',

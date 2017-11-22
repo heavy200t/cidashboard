@@ -16,7 +16,7 @@ var sendFailsafeReports = function(res, queryCriteria) {
         res.send(result);
       });
     db.close();
-  });s
+  });
 }
 
 app.use(bodyParser.urlencoded({ extended: false }));
