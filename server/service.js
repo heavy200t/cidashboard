@@ -19,18 +19,12 @@ var sendFailsafeReports = function(res, queryCriteria) {
   });
 }
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.get('/api/failsafereports', function (req, res) {
-  sendFailsafeReports(res);
-});
-
-app.post('/api/failsafereports', function (req, res) {
-  sendFailsafeReports(res, req.body);
+app.get('/api/failsafereports/:jobName/:buildId', function (req, res) {
+  sendFailsafeReports(res, {jobName: req.param('jobName'), buildId: +req.param('buildId')});
 });
 
 var server = app.listen(3000, function () {
