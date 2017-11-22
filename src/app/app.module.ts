@@ -6,16 +6,22 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MongoService} from './services/mongo.service';
 import { TestResultComponent } from './test-result/test-result.component';
+import {AgGridModule} from 'ag-grid-angular';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestResultComponent
+    TestResultComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    AgGridModule.withComponents([]),
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [MongoService],
   bootstrap: [AppComponent]
