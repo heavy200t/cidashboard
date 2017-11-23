@@ -9,10 +9,18 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./test-result.component.css']
 })
 export class TestResultComponent implements OnInit {
+  jobName: string;
+  buildId: string;
   columnDefs = [
-    {headerName: 'Job Name', field: 'jobName'},
-    {headerName: 'Build Id', field: 'buildId'},
-    {headerName: 'Test Class', field: 'testClassName'},
+    {headerName: 'Test Class', field: 'testClassName', suppressSizeToFit: true},
+    {headerName: 'Test Name', field: 'testName'},
+    {headerName: 'Pass', valueGetter: function (params) {
+      return !params.testFailed;
+    }},
+    {headerName: 'Category', field: 'category'},
+    {headerName: 'Duration', valueGetter: function (params) {
+      return Math.round(params.data.testDuration * 100) / 100;
+    }},
   ];
 
   failsafeReports: FailsafeReport[];
@@ -20,8 +28,8 @@ export class TestResultComponent implements OnInit {
   constructor(private mongoService: MongoService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const jobName = this.route.snapshot.paramMap.get('jobName');
-    const buildId = this.route.snapshot.paramMap.get('buildId');
-    this.mongoService.getFailsafeReports(jobName, buildId).subscribe(res => this.failsafeReports = res);
+    this.jobName = this.route.snapshot.paramMap.get('jobName');
+    this.buildId = this.route.snapshot.paramMap.get('buildId');
+    this.mongoService.getFailsafeReports(this.jobName, this.buildId).subscribe(res => this.failsafeReports = res);
   }
 }
