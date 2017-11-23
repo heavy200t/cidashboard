@@ -1,5 +1,5 @@
 export class FailsafeReport {
-  buildId: string;
+  buildId: number;
   branchName: string;
   testReportUrl: string;
   testFailed: boolean;
