@@ -10,13 +10,13 @@ export class MongoService {
 
   constructor(private http: HttpClient) { }
 
-  // getFailsafeReports(jobName: string, buildId: string): Observable<FailsafeReport[]> {
-  //   const url = `http://localhost:3000/api/failsafereports/${jobName}/${buildId}`;
-  //   return this.http.get<FailsafeReport[]>(url);
-  // }
-
   getFailsafeReports(jobName: string, buildId: string): Observable<FailsafeReport[]> {
-    return of(TESTDATA);
+    const url = `http://localhost:3000/api/failsafereports/${jobName}/${buildId}`;
+    return this.http.get<FailsafeReport[]>(url);
   }
+
+  // getFailsafeReports(jobName: string, buildId: string): Observable<FailsafeReport[]> {
+  //   return of(TESTDATA);
+  // }
 
 }

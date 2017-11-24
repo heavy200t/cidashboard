@@ -404,7 +404,9 @@ export const TESTDATA: FailsafeReport[] = [{
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.subscription.SubscriptionWorkflowTestAcc',
@@ -415,14 +417,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'verifySetSubscribedToServiceAndSubscribedToDevice',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 22 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.subscription.SubscriptionWorkflowTestAcc',
@@ -433,14 +437,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'verifySubscriber',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 23 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.businessRule.GovernanceExecutionPlanBusinessRuleTemplateTestAcc',
@@ -451,14 +457,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'com.hp.automation.junit.tasks.businessRule.GovernanceExecutionPlanBusinessRuleTemplateTestAcc',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 24 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.slt.SltDataChangesTestAcc',
@@ -469,14 +477,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'com.hp.automation.junit.slt.SltDataChangesTestAcc',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 25 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.configuration.platform.PushService.PushEventFlows',
@@ -487,14 +497,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'run',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 26 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.configuration.platform.ems.EMSBasicSystemPropertiesFlows',
@@ -505,14 +517,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'run',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 27 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.configuration.platform.ems.upgrade.EMSUpgradeNewTenantVerificationRelease36Flows',
@@ -523,14 +537,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'run',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 28 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_' +
+    'REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.TaskEngineServiceTestAcc',
@@ -541,14 +557,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testTaskStatusNotExposeUnauthorizedTaskProperties',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 29 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.configuration.platform.entityWorkflow.workflowContent.StockroomWorkflowFlows',
@@ -559,14 +577,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'run',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 30 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -577,14 +597,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testApprovalWithFalseCondition',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 31 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -595,14 +617,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testManagerCanApproveDeniedApproval',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 32 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -613,14 +637,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testAssigneeCanApproveApproval',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 33 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -631,14 +657,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testTenantAdminCanApproveDeniedApproval',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 34 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -649,14 +677,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testAssigneeCanApproveDeniedApproval',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 35 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -667,14 +697,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testManagerCanApproveApproval',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 36 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -685,14 +717,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testTenantAdminCanApproveApproval',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 37 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -703,14 +737,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testOtherCanNotApproveDeniedApprovals',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 38 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -721,14 +757,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testApprovalWithEmptyGroup',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 39 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -739,14 +777,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testClearApprovedBy',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 40 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -757,14 +797,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testOtherCanNotApproveApprovals',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 41 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -775,14 +817,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testManagerCanDeniedApproval',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 42 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -793,14 +837,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testOtherCanNotDeniedApprovals',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 43 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -811,14 +857,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testAssigneeCanDeniedApproval',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 44 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -829,14 +877,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testTenantAdminCanDeniedApproval',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 45 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.junit.tasks.workflow.ApprovalTaskWorkflowTestAcc',
@@ -847,14 +897,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'testAssigneeManagerPath',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 46 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.configuration.platform.authorization.AuthorizationRoleAcc',
@@ -865,14 +917,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'run',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 47 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.configuration.platform.collaboration.QnAModeratorFlows',
@@ -883,14 +937,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'run',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 48 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.configuration.platform.authorization.PackageManagerAuthorizationFlows',
@@ -901,14 +957,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'run',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 49 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.configuration.platform.dashboard.DashboardAcc',
@@ -919,14 +977,16 @@ export const TESTDATA: FailsafeReport[] = [{
     'testName' : 'run',
     'jobName' : 'ITSMA-PR-X',
     'insertionTime' : new Date('2017-11-22T04:21:38.201Z')
-  }
+  },
 
   /* 50 */
   {
     'testFailed' : false,
     'buildId' : 946,
     'branchName' : 'master',
-    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
+    'testReportUrl' : 'http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/' +
+    'MaaS-Job-Tests-Integration-Server-USB-SNB-PR2-XSP2/GIT_BRANCH=master,' +
+    'GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/4497/testReport',
     'category' : 'MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows',
     'markedUnstable' : false,
     'testClassName' : 'com.hp.automation.configuration.platform.ems.relations.EMSRelationsAliasFlows',

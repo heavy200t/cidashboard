@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from '@angular/common/http';
 import {AgGridModule} from 'ag-grid-angular';
+import { JobListComponent } from './job-list/job-list.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {AgGridModule} from 'ag-grid-angular';
     AppComponent,
     TestResultComponent,
     DashboardComponent,
+    JobListComponent,
   ],
   imports: [
     BrowserModule,
