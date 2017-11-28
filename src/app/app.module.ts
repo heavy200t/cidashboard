@@ -10,6 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from '@angular/common/http';
 import {AgGridModule} from 'ag-grid-angular';
 import { JobListComponent } from './job-list/job-list.component';
+import { BuildListComponent } from './build-list/build-list.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -18,10 +20,12 @@ import { JobListComponent } from './job-list/job-list.component';
     TestResultComponent,
     DashboardComponent,
     JobListComponent,
+    BuildListComponent,
   ],
   imports: [
     BrowserModule,
     AgGridModule.withComponents([]),
+    NgbModule.forRoot(),
     HttpClientModule,
     AppRoutingModule
   ],

@@ -7,21 +7,21 @@ import {TESTDATA} from '../mock-data';
 
 @Injectable()
 export class MongoService {
-  private baseUrl = 'http://localhost:3000/api/';
+  private baseUrl = 'http://localhost:3000/api';
   constructor(private http: HttpClient) { }
 
   getFailsafeReports(jobName: string, buildId: string): Observable<FailsafeReport[]> {
-    const url = `${this.baseUrl}failsafereports/${jobName}/${buildId}`;
+    const url = `${this.baseUrl}/failsafereports/${jobName}/${buildId}`;
     return this.http.get<FailsafeReport[]>(url);
   }
 
   getJobList(): Observable<String[]> {
-    const url = `${this.baseUrl}joblist`;
+    const url = `${this.baseUrl}/jobs`;
     return this.http.get<String[]>(url);
   }
 
-  // getFailsafeReports(jobName: string, buildId: string): Observable<FailsafeReport[]> {
-  //   return of(TESTDATA);
-  // }
-
+  getBuilds(jobName: string): Observable<String[]> {
+    const url = `${this.baseUrl}/${jobName}/builds`;
+    return this.http.get<String[]>(url);
+  }
 }

@@ -1,2 +1,4 @@
 <h1>Job List</h1>
-<li *ngFor = "let job of jobs">{{job}}</li>
+<app-build-list *ngFor = "let job of jobs"
+  [jobName]="job"></app-build-list>
+

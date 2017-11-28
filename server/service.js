@@ -22,11 +22,24 @@ var sendFailsafeReports = function(res, queryCriteria) {
   });
 }
 
-var sendJoblist = function(res){
+var sendJobs;
+sendJobs = function (res) {
   var today = new Date();
   var start = new Date(today.setDate(today.getDate() - 30));
   mongoClient.connect(DB_CONN_STR, function (err, db) {
-    db.collection('reports').distinct("jobName", {insertionTime: {$gte: start}}).then(result => sendRes(res, result));
+    db.collection('reports').distinct("jobName", {insertionTime: {$gte: start}}).then(result => sendRes(res, result)
+  )
+    ;
+  })
+};
+
+var sendBuilds = function(res, jobName){
+  var today = new Date();
+  var start = new Date(today.setDate(today.getDate() - 30));
+  mongoClient.connect(DB_CONN_STR, function (err, db) {
+    db.collection('reports').distinct("buildId", {insertionTime: {$gte: start}, jobName: jobName})
+      .then(result => sendRes(res, result)
+  )
   })
 }
 
@@ -35,15 +48,15 @@ app.get('/', function (req, res) {
 });
 
 app.get('/api/failsafereports/:jobName/:buildId', function (req, res) {
-  sendFailsafeReports(res, {jobName: req.param('jobName'), buildId: +req.param('buildId')});
+  sendFailsafeReports(res, {jobName: req.params.jobName, buildId: +req.params.buildId});
 });
 
-app.get('/api/joblist', function (req, res) {
-  sendJoblist(res);
+app.get('/api/jobs', function (req, res) {
+  sendJobs(res);
 });
 
-app.get('/api/builds', function (req, res) {
-  sendJoblist(res);
+app.get('/api/:jobName/builds', function (req, res) {
+  sendBuilds(res, req.params.jobName);
 });
 
 var server = app.listen(3000, function () {

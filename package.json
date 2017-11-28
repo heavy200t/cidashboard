@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.5",
     "ag-grid": "^14.2.0",
     "ag-grid-angular": "^14.2.0",
     "ag-grid-enterprise": "^14.2.0",

@@ -6,13 +6,15 @@ import {MongoService} from '../services/mongo.service';
   templateUrl: './job-list.component.html',
   styleUrls: ['./job-list.component.css']
 })
+
 export class JobListComponent implements OnInit {
   jobs: String[];
 
   constructor(private mongoService: MongoService) { }
 
   ngOnInit() {
-    this.mongoService.getJobList().subscribe(res => this.jobs = res);
+    this.jobs = [];
+    this.mongoService.getJobList().
+    subscribe(res => this.jobs = res);
   }
-
 }
