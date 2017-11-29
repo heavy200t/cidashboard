@@ -25,7 +25,7 @@ var sendFailsafeReports = function(res, queryCriteria) {
 var sendJobs;
 sendJobs = function (res) {
   var today = new Date();
-  var start = new Date(today.setDate(today.getDate() - 30));
+  var start = new Date(today.setDate(today.getDate() - 7));
   mongoClient.connect(DB_CONN_STR, function (err, db) {
     db.collection('reports').distinct("jobName", {insertionTime: {$gte: start}}).then(result => sendRes(res, result)
   )
@@ -35,7 +35,7 @@ sendJobs = function (res) {
 
 var sendBuilds = function(res, jobName){
   var today = new Date();
-  var start = new Date(today.setDate(today.getDate() - 30));
+  var start = new Date(today.setDate(today.getDate() - 7));
   mongoClient.connect(DB_CONN_STR, function (err, db) {
     db.collection('reports').distinct("buildId", {insertionTime: {$gte: start}, jobName: jobName})
       .then(result => sendRes(res, result)

@@ -11,7 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AgGridModule} from 'ag-grid-angular';
 import { JobListComponent } from './job-list/job-list.component';
 import { BuildListComponent } from './build-list/build-list.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AccordionModule} from 'ngx-bootstrap';
+
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AgGridModule.withComponents([]),
-    NgbModule.forRoot(),
+    AccordionModule.forRoot(),
     HttpClientModule,
     AppRoutingModule
   ],

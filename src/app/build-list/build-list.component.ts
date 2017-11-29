@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MongoService} from '../services/mongo.service';
 
+
 @Component({
   selector: 'app-build-list',
   templateUrl: './build-list.component.html',

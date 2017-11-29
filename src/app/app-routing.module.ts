@@ -5,7 +5,6 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {JobListComponent} from './job-list/job-list.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'job-list', component: JobListComponent},
   {path: 'result/:jobName/:buildId', component: TestResultComponent}

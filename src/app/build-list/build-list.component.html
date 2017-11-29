@@ -1,4 +1,12 @@
-<a herf="#">{{jobName}}</a>
-<li *ngFor = "let build of builds">
-  <a routerLink="/result/{{jobName}}/{{build}}">{{build}}</a>
-</li>
+<accordion>
+  <accordion-group>
+    <div accordion-heading><b>{{jobName}}</b></div>
+    <li *ngFor = "let build of builds">
+      <div>
+
+      </div>
+      <a routerLink="/result/{{jobName}}/{{build}}">{{build}}</a>
+    </li>
+  </accordion-group>
+</accordion>
+
