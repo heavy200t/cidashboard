@@ -4,6 +4,8 @@ var mongoClient = require('mongodb');
 var app = express();
 var DB_STR = 'mongodb://localhost:27017';
 var DB_CONN_STR = 'mongodb://shc-devops-master.hpeswlab.net:27017/failsafereports';
+var pug = require('pug');
+const compileFun = pug.compileFile('templates/mail.pug');
 
 var sendRes = function (res, content) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -53,6 +55,10 @@ app.get('/api/failsafereports/:jobName/:buildId', function (req, res) {
 
 app.get('/api/jobs', function (req, res) {
   sendJobs(res);
+});
+
+app.get('/testmail', function(req, res){
+  res.send(compileFun({name: 'panbin'}));
 });
 
 app.get('/api/:jobName/builds', function (req, res) {
