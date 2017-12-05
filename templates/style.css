@@ -11,13 +11,18 @@ table {
   height: auto;
   text-align: center;
   border-collapse: collapse;
+  margin-top: 30px
 }
 td, th {
   border: 1px solid #FFFFFF;
   padding: 3px 2px;
 }
 tbody td {
+  text-align: left;
   font-size: 13px;
+}
+td.number{
+  text-align: center;
 }
 tr:nth-child(even) {
   background: #D0E4F5;

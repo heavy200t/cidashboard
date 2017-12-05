@@ -13,12 +13,12 @@ table(width='100%')
         -var fail_precent = Math.round(i.fail/i.total*10000)/100
         td= i.jobName
         td= i.buildId
-        td= i.total
-        td= i.pass
+        td(class='number')= i.total
+        td(class='number')= i.pass
           span (
             = pass_precent
           span %)
-        td= i.fail
+        td(class='number')= i.fail
           span (
           = fail_precent
           span %)
