@@ -1,0 +1,33 @@
+extends mail_frame
+
+block top5
+  tr
+    td Class
+    td Test case
+    td Age
+  each i in top5
+    tr
+      td= i.testClassName
+      td= i.testName
+      td= i.age
+
+block newFailed
+  tr
+    td Class
+    td Test case
+  each i in newFailed
+    tr
+      td= i.testClassName
+      td= i.testName
+
+block summary
+  table
+    thead Job Name
+    thead Build Id
+    thead Total
+    thead Pass
+    thead Fail
+    each i in summary
+      tr
+        td= i.jobName
+        td= i.buildId
