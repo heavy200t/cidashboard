@@ -5,20 +5,45 @@ body {
 }
 
 table {
-  color:#333333;
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid #FFFFFF;
+  width: 1240px;
+  height: auto;
+  text-align: center;
+  border-collapse: collapse;
 }
-th {
-  border-width: 1px;
-  padding: 8px;
-  border-style: solid;
-  border-color: #666666;
-  background-color: #dedede;
+td, th {
+  border: 1px solid #FFFFFF;
+  padding: 3px 2px;
 }
-td {
-  border-width: 1px;
-  padding: 8px;
-  border-style: solid;
-  border-color: #666666;
-  background-color: #ffffff;
-  vertical-align: top;
+tbody td {
+  font-size: 13px;
+}
+tr:nth-child(even) {
+  background: #D0E4F5;
+}
+thead {
+  background: #0B6FA4;
+  border-bottom: 5px solid #FFFFFF;
+}
+thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #FFFFFF;
+}
+thead th:first-child {
+  border-left: none;
+}
+
+tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  background: #D0E4F5;
+  border-top: 3px solid #444444;
+}
+tfoot td {
+  font-size: 14px;
 }

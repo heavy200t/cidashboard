@@ -1,12 +1,13 @@
-table
+table(width='100%')
   caption Summary of today's automation
-  tr
-  td Job Name
-  td Build Id
-  td Total
-  td Pass
-  td Fail
-each i in summary
-  tr
-    td= i.jobName
-    td= i.buildId
+  thead
+    th Job Name
+    th Build Id
+    th Total
+    th Pass
+    th Fail
+  tbody
+    each i in summary
+      tr
+        td= i.jobName
+        td= i.buildId

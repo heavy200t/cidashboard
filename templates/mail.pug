@@ -3,14 +3,6 @@ html
   include head
 body
   h1 Daily report
-  table
-    tr
-      (width='100%')
-    tr
-      td(width='50%')
-        include top5
-      td(width='50%')
-        include newFailed
-  table(width='100')
-    caption
-    include summary
+  include newFailed
+  include top5
+  include jobs
