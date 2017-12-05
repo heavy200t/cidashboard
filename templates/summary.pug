@@ -1,0 +1,12 @@
+table
+  caption Summary of today's automation
+  tr
+  td Job Name
+  td Build Id
+  td Total
+  td Pass
+  td Fail
+each i in summary
+  tr
+    td= i.jobName
+    td= i.buildId

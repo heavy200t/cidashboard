@@ -1,33 +1,16 @@
-extends mail_frame
-
-block top5
-  tr
-    td Class
-    td Test case
-    td Age
-  each i in top5
-    tr
-      td= i.testClassName
-      td= i.testName
-      td= i.age
-
-block newFailed
-  tr
-    td Class
-    td Test case
-  each i in newFailed
-    tr
-      td= i.testClassName
-      td= i.testName
-
-block summary
+doctype  html
+html
+  include head
+body
+  h1 Daily report
   table
-    thead Job Name
-    thead Build Id
-    thead Total
-    thead Pass
-    thead Fail
-    each i in summary
-      tr
-        td= i.jobName
-        td= i.buildId
+    tr
+      (width='100%')
+    tr
+      td(width='50%')
+        include top5
+      td(width='50%')
+        include newFailed
+  table(width='100')
+    caption
+    include summary

@@ -1,0 +1,12 @@
+table
+  caption Top 5 failed cases
+  thead
+    th Class
+    th Test case
+    th Age
+  tbody
+    each i in top5
+      tr
+        td= i.testClassName
+        td= i.testName
+        td= i.age

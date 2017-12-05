@@ -1,0 +1,11 @@
+table
+  caption New failed cases
+  thead
+    tr
+      th Class
+      th Test case
+  tbody
+    each i in newFailed
+      tr
+        td= i.testClassName
+        td= i.testName
