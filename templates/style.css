@@ -13,6 +13,12 @@ table {
   border-collapse: collapse;
   margin-top: 30px
 }
+
+caption{
+  text-align: left;
+  font-weight: bold;
+  font-size: large;
+}
 td, th {
   border: 1px solid #FFFFFF;
   padding: 3px 2px;

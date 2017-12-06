@@ -1,12 +1,11 @@
+h2 Summary of today's automation
 table(width='100%')
-  caption Summary of today's automation
-  thead
+  tr
     th Job Name
     th Build Id
     th Total
     th Pass
     th Fail
-  tbody
     each i in summary
       tr
         -var pass_precent = Math.round(i.pass/i.total*10000)/100
@@ -16,7 +15,7 @@ table(width='100%')
         td(class='number')= i.total
         td(class='number')= i.pass
           span (
-            = pass_precent
+          = pass_precent
           span %)
         td(class='number')= i.fail
           span (
