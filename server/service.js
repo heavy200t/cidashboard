@@ -8,6 +8,17 @@ const DB_CONN_STR = 'mongodb://shc-devops-master.hpeswlab.net:27017/failsaferepo
 const pug = require('pug');
 const compileFun = pug.compileFile('templates/mail.pug');
 
+mock_data.jobs.forEach(job => job.detail.forEach(
+  i => {
+    let list = i._id.category.split('/');
+    i._id.category = list[list.length-1];
+    let idx =  i._id.reportUrl.indexOf('TEST_TYPE=');
+    if (idx != -1) {
+      i.type = i._id.reportUrl.substring(idx+10).split(',')[0];
+    }
+  }
+));
+
 const sendRes = function (res, content) {
   res.header("Access-Control-Allow-Origin", "*");
   res.set({'Content-Type':'text/json','Encodeing':'utf8'});

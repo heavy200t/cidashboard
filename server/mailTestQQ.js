@@ -6,18 +6,33 @@ const mongoClient = require('mongodb');
 const DB_CONN_STR = 'mongodb://shc-devops-master.hpeswlab.net:27017/failsafereports';
 const data = [];
 
+mock_data.jobs.forEach(job => job.detail.forEach(
+  i => {
+    let list = i._id.category.split('/');
+    i._id.category = list[list.length-1];
+    let idx =  i._id.reportUrl.indexOf('TEST_TYPE=');
+    if (idx != -1) {
+      i.type = i._id.reportUrl.substring(idx+10).split(',')[0];
+    }
+  }
+));
+
 const sendMail = function(data) {
   nodemailer.createTestAccount((err, account) => {
     let transporter = nodemailer.createTransport({
-      host: 'smtp3.hpe.com',
-      port: 25
+      service: 'qq',
+      auth: {
+        user: '3716743@qq.com',
+        pass: 'ondxxgkwiieucafc' //授权码,通过QQ获取
+
+      }
     });
 
     let mailOptions = {
-      from: 'test@hpe.com',
+      from: '3716743@qq.com',
       to: 'bpan@hpe.com',
       subject: 'test mail',
-      html: compileFunction(mock_data),
+      html: compileFunction(data),
       attachments:[{
         filename: 'image001.png',
         path: 'templates/image001.png',
@@ -55,8 +70,9 @@ const getJobSummary = function(db, jobName, buildId) {
   );
 };
 
-mongoClient.connect(DB_CONN_STR, function (err,db) {
-  getJobSummary(db, 'ITSMA-PR-X', 1029);
-});
+// mongoClient.connect(DB_CONN_STR, function (err,db) {
+//   getJobSummary(db, 'ITSMA-PR-X', 1029);
+// });
 
 // console.info(getJobSummary('ITSMA-PR-X', 1029));
+sendMail(mock_data)

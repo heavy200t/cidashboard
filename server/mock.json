@@ -1,6 +1,5 @@
-{"summary": [
-  {"jobName": "SAW-Build-master", "buildId": 3925, "total": 120, "pass": 23, "fail": 97, "summary": [
-    /* 1 */
+{"jobs": [
+  {"jobName": "SAW-Build-master", "buildId": 3925, "total": 120, "pass": 23, "fail": 97, "detail": [
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/core-ui",
@@ -12,7 +11,6 @@
       "unstable" : 0
     },
 
-    /* 2 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/ui",
@@ -24,7 +22,6 @@
       "unstable" : 11
     },
 
-    /* 3 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/ui",
@@ -36,7 +33,6 @@
       "unstable" : 19
     },
 
-    /* 4 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/ui",
@@ -48,7 +44,6 @@
       "unstable" : 11
     },
 
-    /* 5 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/saw-tests",
@@ -60,7 +55,6 @@
       "unstable" : 40
     },
 
-    /* 6 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/requires-services",
@@ -72,7 +66,6 @@
       "unstable" : 104
     },
 
-    /* 7 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/hardcoded-tenants-saw-server",
@@ -84,7 +77,6 @@
       "unstable" : 0
     },
 
-    /* 8 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/tenants-creation",
@@ -96,7 +88,6 @@
       "unstable" : 0
     },
 
-    /* 9 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/acceptance-and-qa-flows",
@@ -108,7 +99,6 @@
       "unstable" : 68
     },
 
-    /* 10 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/requires-services-saw-server",
@@ -120,7 +110,6 @@
       "unstable" : 10
     },
 
-    /* 11 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/xsp-x",
@@ -132,7 +121,6 @@
       "unstable" : 0
     },
 
-    /* 12 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/tenant-management",
@@ -144,7 +132,6 @@
       "unstable" : 1
     },
 
-    /* 13 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/lms-gateway",
@@ -156,7 +143,6 @@
       "unstable" : 2
     },
 
-    /* 14 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/rest-cpf",
@@ -168,7 +154,6 @@
       "unstable" : 0
     },
 
-    /* 15 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/core-ui",
@@ -180,7 +165,6 @@
       "unstable" : 0
     },
 
-    /* 16 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/ui",
@@ -192,7 +176,6 @@
       "unstable" : 0
     },
 
-    /* 17 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/ui",
@@ -204,7 +187,6 @@
       "unstable" : 13
     },
 
-    /* 18 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/hardcoded-tenants",
@@ -216,7 +198,6 @@
       "unstable" : 12
     },
 
-    /* 19 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB/SNB_sync/ui",
@@ -228,7 +209,7 @@
       "unstable" : 4
     }
   ]},
-  {"jobName": "ITSMA-PR-X", "buildId": 1029, "total": 30, "pas": 23, "fail": 7, "summary": [/* 1 */
+  {"jobName": "ITSMA-PR-X", "buildId": 1029, "total": 30, "pas": 23, "fail": 7, "detail": [
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/ui",
@@ -240,7 +221,6 @@
       "unstable" : 13
     },
 
-    /* 2 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/core-ui",
@@ -252,7 +232,6 @@
       "unstable" : 0
     },
 
-    /* 3 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/rest-cpf",
@@ -264,7 +243,6 @@
       "unstable" : 0
     },
 
-    /* 4 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/lms-gateway",
@@ -276,7 +254,6 @@
       "unstable" : 2
     },
 
-    /* 5 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/tenant-management",
@@ -288,7 +265,6 @@
       "unstable" : 1
     },
 
-    /* 6 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/hardcoded-tenants-saw-server",
@@ -300,7 +276,6 @@
       "unstable" : 0
     },
 
-    /* 7 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/tenants-creation",
@@ -312,7 +287,6 @@
       "unstable" : 0
     },
 
-    /* 8 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/core-ui",
@@ -324,7 +298,6 @@
       "unstable" : 0
     },
 
-    /* 9 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/saw-tests",
@@ -336,7 +309,6 @@
       "unstable" : 40
     },
 
-    /* 10 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/ui",
@@ -348,7 +320,6 @@
       "unstable" : 11
     },
 
-    /* 11 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/requires-services-saw-server",
@@ -360,7 +331,6 @@
       "unstable" : 10
     },
 
-    /* 12 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/acceptance-and-qa-flows",
@@ -372,7 +342,6 @@
       "unstable" : 68
     },
 
-    /* 13 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/hardcoded-tenants",
@@ -384,7 +353,6 @@
       "unstable" : 12
     },
 
-    /* 14 */
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/requires-services",
