@@ -1,0 +1,12 @@
+<p>
+  daily-report works!
+</p>
+<h2>Job's summary</h2>
+<div *ngFor = "let job of getJobs()">
+  <h3>{{job.jobName}}:{{job.buildId}}</h3>
+  <table>
+    <tr *ngFor="let detail of getJobDetails(job)">
+      <td>{{detail._id.category}}</td>
+    </tr>
+  </table>
+</div>

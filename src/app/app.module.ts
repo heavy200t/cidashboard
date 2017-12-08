@@ -12,6 +12,7 @@ import {AgGridModule} from 'ag-grid-angular';
 import { JobListComponent } from './job-list/job-list.component';
 import { BuildListComponent } from './build-list/build-list.component';
 import {AccordionModule} from 'ngx-bootstrap';
+import { DailyReportComponent } from './daily-report/daily-report.component';
 
 
 
@@ -22,6 +23,7 @@ import {AccordionModule} from 'ngx-bootstrap';
     DashboardComponent,
     JobListComponent,
     BuildListComponent,
+    DailyReportComponent,
   ],
   imports: [
     BrowserModule,

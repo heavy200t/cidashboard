@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {FailsafeReport} from '../data-model/failsafe-reports';
 import {of} from 'rxjs/observable/of';
 import {TESTDATA} from '../mock-data';
+import {DailyReport} from '../data-model/daily-report';
 
 @Injectable()
 export class MongoService {
@@ -13,6 +14,11 @@ export class MongoService {
   getFailsafeReports(jobName: string, buildId: string): Observable<FailsafeReport[]> {
     const url = `${this.baseUrl}/failsafereports/${jobName}/${buildId}`;
     return this.http.get<FailsafeReport[]>(url);
+  }
+
+  getDailyReports(): Observable<DailyReport> {
+    const url = `${this.baseUrl}/dailyReports`;
+    return this.http.get<DailyReport>(url);
   }
 
   getJobList(): Observable<String[]> {
