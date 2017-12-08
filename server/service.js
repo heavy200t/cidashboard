@@ -50,10 +50,25 @@ const sendBuilds = function(res, jobName){
   let today = new Date();
   let start = new Date(today.setDate(today.getDate() - 7));
   mongoClient.connect(DB_CONN_STR, function (err, db) {
-    db.collection('reports').distinct("buildId", {insertionTime: {$gte: start}, jobName: jobName})
+    db.collection('reports').distinct("jobName", {insertionTime: {$gte: start}, jobName: jobName})
       .then(result => sendRes(res, result)
   )
   })
+};
+
+const sendJobBuilds = function(res, s, e){
+  let start = new Date(Date.parse(s.replace(/-/g, "/")));
+  let end = new Date(Date.parse(e.replace(/-/g, "/")));
+
+  mongoClient.connect(DB_CONN_STR, function (err, db) {
+    db.collection('reports').distinct("buildId", {insertionTime: {$gte: start, $lt: end}, jobName: jobName})
+      .then(result => sendRes(res, result)
+  )
+  })
+};
+
+const sendDailyReports = function(res){
+  sendRes(res, mock_data);
 };
 
 app.get('/', function (req, res) {
@@ -71,6 +86,14 @@ app.get('/api/jobs', function (req, res) {
 app.get('/testmail', function(req, res){
   res.send(compileFun(mock_data));
 });
+
+app.get('/api/dailyReports', function (req, res) {
+  sendDailyReports(res);
+});
+
+app.get('/api/getJobBuilds', function (req, res) {
+  sendJobBuilds(res, req.params.start, req.params.end);
+})
 
 app.get('/api/:jobName/builds', function (req, res) {
   sendBuilds(res, req.params.jobName);
