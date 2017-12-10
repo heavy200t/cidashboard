@@ -26,4 +26,8 @@ export class DailyReportComponent implements OnInit {
   getJobDetails(job: DailyReportJob) {
     return job.detail;
   }
+
+  getPercent(value: number, total: number) {
+    return Math.round(value * 10000 / total) / 100;
+  }
 }
