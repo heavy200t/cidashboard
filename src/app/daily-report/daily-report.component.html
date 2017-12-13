@@ -1,32 +1,21 @@
 <h1>Daily Report</h1>
-<h2>Job's summary</h2>
-<div *ngFor = "let job of getJobs()">
-  <h3></h3>
-  <table>
-    <caption>
-      {{job.jobName}}:{{job.buildId}}
-    </caption>
-    <thead>
-      <table>
-        <td></td>
-        <td></td>
-      </table>
-      <tr>
-        <th>Category</th>
-        <th>Total</th>
-        <th>Pass</th>
-        <th>Fail</th>
-        <th>Unstable</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let detail of getJobDetails(job)">
-        <td><a href = {{detail._id.reportUrl}}>{{detail._id.category}}[{{detail.type}}]</a></td>
-        <td>{{detail.total}}</td>
-        <td>{{detail.pass}}({{getPercent(detail.pass, detail.total)}}%)</td>
-        <td>{{detail.fail}}({{getPercent(detail.fail, detail.total)}}%)</td>
-        <td>{{detail.unstable}}({{getPercent(detail.unstable, detail.total)}}%)</td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngFor = "let job of jobs">
+    <table style="width: 100%">
+      <caption>{{job._id.jobName}}:{{job._id.buildId}}</caption>
+      <td>
+        <li>Total: {{job.total}} </li>
+        <li>Pass: {{getPercent(job.pass, job.total)}}%</li>
+        <li>Unstable: {{getPercent(job.unstable, job.total)}}%</li>
+      </td>
+      <td></td>
+
+    </table>
+    <ag-grid-angular
+      style="width: 100%; height: 300px;"
+      class="ag-fresh"
+      [rowData]="getJobDetails(job)"
+      [columnDefs]="columnDefs"
+      [enableSorting]="true"
+      [enableFilter]="true">
+    </ag-grid-angular>
 </div>
