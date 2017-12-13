@@ -1,14 +1,30 @@
-<h1>Daily Report</h1>
 <div *ngFor = "let job of jobs">
-    <table style="width: 100%">
-      <caption>{{job._id.jobName}}:{{job._id.buildId}}</caption>
-      <td>
-        <li>Total: {{job.total}} </li>
-        <li>Pass: {{getPercent(job.pass, job.total)}}%</li>
-        <li>Unstable: {{getPercent(job.unstable, job.total)}}%</li>
-      </td>
-      <td></td>
 
+    <table style="width: 100%; vertical-align: top">
+      <caption>
+        <div>{{job._id.jobName}}:{{job._id.buildId}}</div>
+      </caption>
+      <thead>
+        <td width="55%">
+          <li>Total: {{job.total}} </li>
+          <li>Pass: {{getPercent(job.pass, job.total)}}%</li>
+          <li>Fail: {{getPercent(job.fail, job.total)}}%</li>
+          <li>Unstable: {{getPercent(job.unstable, job.total)}}%</li>
+          <li>Start Time: {{job.startTime}}</li>
+        </td>
+        <td>
+          <dx-pie-chart
+            style="height: 350px"
+            palette="bright"
+            [dataSource]="countByCategory(job)">
+            <dxi-series
+              argumentField="category"
+              valueField="cnt">
+            </dxi-series>
+            <dxo-size [width]="500"></dxo-size>
+          </dx-pie-chart>
+        </td>
+      </thead>
     </table>
     <ag-grid-angular
       style="width: 100%; height: 300px;"

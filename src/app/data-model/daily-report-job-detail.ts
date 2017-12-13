@@ -12,5 +12,6 @@ export class DailyReportJobDetail {
   pass_percent: number;
   fail_percent: number;
   unstable_percent: number;
+  combinedCategory: string;
   unstable: number;
 }

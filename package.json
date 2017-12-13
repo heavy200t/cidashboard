@@ -27,6 +27,8 @@
     "body-parser": "^1.18.2",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "devextreme": "^17.2.3",
+    "devextreme-angular": "^17.2.3",
     "express": "^4.16.2",
     "jquery": "^3.2.1",
     "mongodb": "^2.2.33",
