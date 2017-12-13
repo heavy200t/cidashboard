@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MongoService} from '../services/mongo.service';
 import {FailsafeReport} from '../data-model/failsafe-reports';
 import {ActivatedRoute} from '@angular/router';
@@ -9,8 +9,8 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./test-result.component.css']
 })
 export class TestResultComponent implements OnInit {
-  @Input() jobName: string;
-  @Input() buildId: string;
+  jobName: string;
+  buildId: string;
   columnDefs = [
     {headerName: 'Test Class', field: 'testClassName', suppressSizeToFit: true},
     {headerName: 'Test Name', field: 'testName'},
@@ -25,9 +25,11 @@ export class TestResultComponent implements OnInit {
 
   failsafeReports: FailsafeReport[];
 
-  constructor(private mongoService: MongoService) {}
+  constructor(private mongoService: MongoService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.jobName = this.route.snapshot.paramMap.get('jobName');
+    this.buildId = this.route.snapshot.paramMap.get('buildId');
     this.mongoService.getFailsafeReports(this.jobName, this.buildId).subscribe(res => this.failsafeReports = res);
   }
 }
