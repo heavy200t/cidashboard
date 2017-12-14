@@ -6,15 +6,24 @@
       </caption>
       <thead>
         <td width="55%">
-          <li>Total: {{job.total}} </li>
-          <li>Pass: {{getPercent(job.pass, job.total)}}%</li>
-          <li>Fail: {{getPercent(job.fail, job.total)}}%</li>
-          <li>Unstable: {{getPercent(job.unstable, job.total)}}%</li>
-          <li>Start Time: {{job.startTime}}</li>
-        </td>
+          <dx-linear-gauge
+            [value] = "job.pass"
+            style="width: 50%;" >
+            <dxo-title text = {{job._id.jobName}}:{{job._id.buildId}}></dxo-title>
+            <dxo-value-indicator color="green"></dxo-value-indicator>
+            <dxo-scale [endValue] = "job.total"></dxo-scale>
+          </dx-linear-gauge>
+          <ul>
+            <li>Total: {{job.total}} </li>
+            <li style="color: green;">Pass: {{getPercent(job.pass, job.total)}}%</li>
+            <li style="color: red">Fail: {{getPercent(job.fail, job.total)}}%</li>
+            <li style="color: orangered">Unstable: {{getPercent(job.unstable, job.total)}}%</li>
+            <li>Start Time: {{job.startTime}}</li>
+          </ul>
+
         <td>
           <dx-pie-chart
-            style="height: 350px"
+            style="height: 300px"
             palette="bright"
             [dataSource]="countByCategory(job)">
             <dxi-series

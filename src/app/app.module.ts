@@ -13,7 +13,7 @@ import { JobListComponent } from './job-list/job-list.component';
 import { BuildListComponent } from './build-list/build-list.component';
 import {AccordionModule} from 'ngx-bootstrap';
 import { DailyReportComponent } from './daily-report/daily-report.component';
-import {DxPieChartModule} from 'devextreme-angular';
+import {DxLinearGaugeModule, DxPieChartModule, DxProgressBarModule} from 'devextreme-angular';
 import { LinkComponent } from './daily-report/link/link.component';
 
 
@@ -31,6 +31,7 @@ import { LinkComponent } from './daily-report/link/link.component';
   imports: [
     BrowserModule,
     DxPieChartModule,
+    DxLinearGaugeModule,
     AgGridModule.withComponents([LinkComponent]),
     AccordionModule.forRoot(),
     HttpClientModule,
