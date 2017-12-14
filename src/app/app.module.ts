@@ -14,6 +14,7 @@ import { BuildListComponent } from './build-list/build-list.component';
 import {AccordionModule} from 'ngx-bootstrap';
 import { DailyReportComponent } from './daily-report/daily-report.component';
 import {DxPieChartModule} from 'devextreme-angular';
+import { LinkComponent } from './daily-report/link/link.component';
 
 
 
@@ -25,11 +26,12 @@ import {DxPieChartModule} from 'devextreme-angular';
     JobListComponent,
     BuildListComponent,
     DailyReportComponent,
+    LinkComponent,
   ],
   imports: [
     BrowserModule,
     DxPieChartModule,
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([LinkComponent]),
     AccordionModule.forRoot(),
     HttpClientModule,
     AppRoutingModule

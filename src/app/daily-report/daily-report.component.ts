@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MongoService} from '../services/mongo.service';
-import {DailyReport} from '../data-model/daily-report';
 import {DailyReportJob} from '../data-model/daily-report-job';
-import {DailyReportJobDetail} from '../data-model/daily-report-job-detail';
 import {GridOptions} from 'ag-grid';
 import {isUndefined} from 'util';
+import {LinkComponent} from './link/link.component';
 
 export class CategoryCount {
   category: string;
@@ -22,6 +21,18 @@ export class DailyReportComponent implements OnInit {
   columnDefs: any[];
   areas: CategoryCount[] = [];
 
+  static combineCategory (c, t) {
+    let ret = c;
+    if (!isUndefined(t)) {
+      ret += '[' + t + ']';
+    }
+    return ret;
+  }
+
+  static getPercent(value: number, total: number) {
+    return Math.round(value * 10000 / total) / 100;
+  }
+
   constructor(private mongoService: MongoService) {
     this.gridOptions = <GridOptions>{};
   }
@@ -30,7 +41,11 @@ export class DailyReportComponent implements OnInit {
     this.mongoService.getDailyReports().
     subscribe(res => this.jobs = res );
     this.columnDefs = [
-      {headerName: 'Category', field: 'combinedCategory'},
+      { headerName: 'Category',
+        width: 430,
+        valueGetter: function(params) {
+          return {'category': params.data.combinedCategory, 'reportUrl': params.data._id.reportUrl}; },
+        cellRendererFramework: LinkComponent},
       {headerName: 'Total', field: 'total'},
       {headerName: 'Pass', valueGetter: function(params) {
         const data = params.data;
@@ -47,19 +62,12 @@ export class DailyReportComponent implements OnInit {
     ];
   }
 
-  combineCategory (c, t) {
-    let ret = c;
-    if (!isUndefined(t)) {
-      ret += '[' + t + ']';
-    }
-    return ret;
-  }
   getJobDetails(job: DailyReportJob) {
     job.detail.forEach(i => {
-      i.combinedCategory = this.combineCategory(i._id.category, i.type);
-      i.pass_percent = this.getPercent(i.pass, i.total);
-      i.fail_percent = this.getPercent(i.fail, i.total);
-      i.unstable_percent = this.getPercent(i.unstable, i.total);
+      i.combinedCategory = DailyReportComponent.combineCategory(i._id.category, i.type);
+      i.pass_percent = DailyReportComponent.getPercent(i.pass, i.total);
+      i.fail_percent = DailyReportComponent.getPercent(i.fail, i.total);
+      i.unstable_percent = DailyReportComponent.getPercent(i.unstable, i.total);
     });
     return job.detail;
   }
@@ -78,9 +86,5 @@ export class DailyReportComponent implements OnInit {
 
     return data;
 
-  }
-
-  getPercent(value: number, total: number) {
-    return Math.round(value * 10000 / total) / 100;
   }
 }
