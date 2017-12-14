@@ -209,7 +209,7 @@
       "unstable" : 4
     }
   ]},
-  {"_id": {"jobName": "ITSMA-PR-X", "buildId": 1029}, "total": 30, "pas": 23, "fail": 7, "detail": [
+  {"_id": {"jobName": "ITSMA-PR-X", "buildId": 1029}, "total": 30, "pass": 23, "fail": 7, "detail": [
     {
       "_id" : {
         "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB-PR2-XSP2/SNB_sync/ui",
