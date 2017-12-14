@@ -1,3 +1,4 @@
+const mock_data = require('./mock.json');
 const express = require('express');
 const mongoClient = require('mongodb');
 const app = express();
@@ -41,6 +42,18 @@ const sendBuilds = function(res, jobName){
   })
 };
 
+const sendDailyReports_mock = function(res, s, e){
+  mock_data.jobs.forEach(job => job.detail.forEach(
+    i => {
+      let list = i._id.category.split('/');
+      i._id.category = list[list.length-1];
+      let idx =  i._id.reportUrl.indexOf('TEST_TYPE=');
+      if (idx != -1) {
+        i.type = i._id.reportUrl.substring(idx+10).split(',')[0];
+      }
+    }));
+  sendRes(res, mock_data.jobs);
+}
 const sendDailyReports = function(res, s, e){
   /*
   Date query scope is [s, e).
@@ -118,7 +131,7 @@ app.get('/api/jobs', function (req, res) {
 });
 
 app.get('/api/dailyReports', function (req, res) {
-  sendDailyReports(res, req.query['start'], req.query['end']);
+  sendDailyReports_mock(res, req.query['start'], req.query['end']);
 });
 
 app.get('/api/:jobName/builds', function (req, res) {
