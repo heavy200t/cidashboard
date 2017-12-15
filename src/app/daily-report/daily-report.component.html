@@ -5,10 +5,10 @@
         <div>{{job._id.jobName}}:{{job._id.buildId}}</div>
       </caption>
       <thead>
-        <td width="55%">
+        <td width="40%">
           <dx-linear-gauge
             [value] = "job.pass"
-            style="width: 50%;" >
+            style="width: 70%;" >
             <dxo-title text = {{job._id.jobName}}:{{job._id.buildId}}></dxo-title>
             <dxo-value-indicator color="green"></dxo-value-indicator>
             <dxo-scale [endValue] = "job.total"></dxo-scale>
@@ -30,7 +30,7 @@
               argumentField="category"
               valueField="cnt">
             </dxi-series>
-            <dxo-size [width]="500"></dxo-size>
+            <!--<dxo-size [width]="500"></dxo-size>-->
           </dx-pie-chart>
         </td>
       </thead>
