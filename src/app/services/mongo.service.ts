@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {FailsafeReport} from '../data-model/failsafe-reports';
 import {DailyReportJob} from '../data-model/daily-report-job';
 import { environment } from '../../environments/environment';
+import {isUndefined} from 'util';
 
 @Injectable()
 export class MongoService {
@@ -15,8 +16,17 @@ export class MongoService {
     return this.http.get<FailsafeReport[]>(url);
   }
 
-  getDailyReports(): Observable<DailyReportJob[]> {
-    const url = `${this.baseUrl}/dailyReports`;
+  getDailyReports(date?: Date): Observable<DailyReportJob[]> {
+    let queryDate: string;
+    let url: string;
+    if (isUndefined(date)) {
+       url = `${this.baseUrl}/dailyReports`;
+    }else {
+      const d = new Date(date.setDate(date.getDate() - 1));
+      queryDate = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+      url = `${this.baseUrl}/dailyReports?start=${queryDate}`;
+    }
+
     return this.http.get<DailyReportJob[]>(url);
   }
 

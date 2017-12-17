@@ -9,6 +9,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'job-list', component: JobListComponent},
   {path: 'result/:jobName/:buildId', component: TestResultComponent},
+  {path: 'dailyReport/:date', component: DailyReportComponent},
   {path: 'dailyReport', component: DailyReportComponent}
 ];
 
