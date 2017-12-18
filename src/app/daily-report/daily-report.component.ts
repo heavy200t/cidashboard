@@ -4,6 +4,8 @@ import {DailyReportJob} from '../data-model/daily-report-job';
 import {GridOptions} from 'ag-grid';
 import {isUndefined} from 'util';
 import {LinkComponent} from './link/link.component';
+import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
 
 export class CategoryCount {
   category: string;
@@ -20,6 +22,7 @@ export class DailyReportComponent implements OnInit {
   jobs: DailyReportJob[];
   columnDefs: any[];
   areas: CategoryCount[] = [];
+  date: Date;
 
   combineCategory (c, t) {
     let ret = c;
@@ -33,12 +36,21 @@ export class DailyReportComponent implements OnInit {
     return Math.round(value * 10000 / total) / 100;
   }
 
-  constructor(private mongoService: MongoService) {
+  constructor(private mongoService: MongoService, private route: ActivatedRoute) {
     this.gridOptions = <GridOptions>{};
   }
 
   ngOnInit() {
-    this.mongoService.getDailyReports().
+    let getReports: Observable<DailyReportJob[]>;
+    if (this.route.snapshot.params.hasOwnProperty('date'))  {
+      this.date = new Date(this.route.snapshot.paramMap.get('date'));
+      getReports = this.mongoService.getDailyReports(this.date);
+    } else {
+      getReports = this.mongoService.getDailyReports();
+    }
+
+
+    getReports.
     subscribe(res => this.jobs = res );
     this.columnDefs = [
       { headerName: 'Category',

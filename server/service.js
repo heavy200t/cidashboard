@@ -1,14 +1,31 @@
+const {Builder, By, Key, until, Capabilities}  = require('selenium-webdriver');
 const mock_data = require('./mock.json');
 const express = require('express');
+const nodemailer = require('nodemailer');
 const mongoClient = require('mongodb');
 const app = express();
 const DB_CONN_STR = 'mongodb://'+process.env.MONGO_SERVER+':' + process.env.MONGO_PORT + '/failsafereports';
+const pug = require('pug');
+const compileFunction = pug.compileFile('templates/mail.pug');
+
+var driver = new Builder()
+  .forBrowser('chrome')
+  .usingServer('http://shc-selenium-hub.hpeswlab.net:4444/wd/hub')
+  .build();
 
 const sendRes = function (res, content) {
   res.header("Access-Control-Allow-Origin", "*");
   res.set({'Content-Type':'text/json','Encodeing':'utf8'});
   res.send(content);
 };
+
+function sleep(delay) {
+  return function () {
+    return new Promise(function (resolve, reject) {
+      setTimeout(resolve, delay);
+    });
+  }
+}
 
 const sendFailsafeReports = function(res, queryCriteria) {
   queryCriteria = queryCriteria || {};
@@ -54,6 +71,7 @@ const sendDailyReports_mock = function(res, s, e){
     }));
   sendRes(res, mock_data.jobs);
 }
+
 const sendDailyReports = function(res, s, e){
   /*
   Date query scope is [s, e).
@@ -118,6 +136,87 @@ const calcDailyReports = function(res, d){
   });
 };
 
+const captureScreenShot = function (fileName, url) {
+  return new Promise(resolve => {
+    let pageWidth = 0;
+    let pageHeight = 0;
+    driver.get(url)
+      .then(_ => driver.findElement(By.tagName('app-daily-report')))
+      .then(sleep(10000))
+      .then(_ => driver.wait(until.elementIsVisible(driver.findElement(By.tagName('ag-grid-angular'))),10000))
+      .then(sleep(3000))
+      .then(_ => driver.findElement(By.tagName('body')).getSize()
+        .then((size) => {
+          pageWidth = size.width;
+          pageHeight = size.height;
+        }))
+      .then(_ => {
+        console.log(pageWidth);
+        console.log(pageHeight);
+      })
+      .then(_ => {
+        driver.manage().window().setSize(pageWidth, pageHeight)
+      })
+      .then(
+        _ => {
+          driver.takeScreenshot().then(function (image,err) {
+            require('fs').writeFile(fileName,image, 'base64', function (err) {
+            });
+          });
+        }
+      )
+      .then(_ => {
+        driver.close();
+        resolve({
+          "filename": fileName,
+          "path": './'+fileName,
+          "contentTpe": 'image/png',
+          "contentDisposition": "inline",
+          "cid": 'dailyReport_screenCapture'
+        });
+      });
+  });
+}
+
+const sendDailyReportMail = function(res){
+  let today = new Date();
+  let yesterday = new Date(today.setDate(today.getDate() - 1));
+  let str_yesterday = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1).toString() + '-' + yesterday.getDate();
+  let url = 'http://shc-devops-master.hpeswlab.net:30080/dailyReport/' + str_yesterday;
+  let screenshotFileName = 'dailyReport_' + str_yesterday + '.png';
+  nodemailer.createTestAccount((err, account) => {
+    let transporter = nodemailer.createTransport({
+      host: 'smtp3.hpe.com',
+      port: 25
+    });
+
+    let mailOptions = {
+      from: 'test@hpe.com',
+      to: 'bpan@hpe.com',
+      subject: 'Automation daily report - ' + str_yesterday,
+      html: compileFunction({"url": url, "cid": "dailyReport_screenCapture"}),
+      attachments:[]
+    };
+
+    captureScreenShot(screenshotFileName, url).then(attachment => {
+      mailOptions.attachments.push(attachment);
+      new Promise((resolve, reject) => {
+        resolve;
+      })
+    }).then(_ => {
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          return console.log(error);
+        }
+        console.log('Message sent: %s', info.message);
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        res.send('Mail is sent successfully.');
+      });
+    });
+  });
+
+};
+
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
@@ -131,7 +230,11 @@ app.get('/api/jobs', function (req, res) {
 });
 
 app.get('/api/dailyReports', function (req, res) {
-  sendDailyReports_mock(res, req.query['start'], req.query['end']);
+  sendDailyReports(res, req.query['start'], req.query['end']);
+});
+
+app.get('/api/dailyReportMail', function (req, res) {
+  sendDailyReportMail(res);
 });
 
 app.get('/api/:jobName/builds', function (req, res) {
@@ -141,6 +244,8 @@ app.get('/api/:jobName/builds', function (req, res) {
 app.get('/api/calcDailyReport', function (req, res)  {
   calcDailyReports(res, req.query['date']);
 });
+
+
 
 const server = app.listen(3000, function () {
   let host = server.address().address;
