@@ -1,10 +1,12 @@
 <div *ngIf="result" class="container">
   <div class = "row">
-    <div class = "col-lg-4">
+    <div class = "col-lg-4 jobSummary">
       <dx-linear-gauge
-        [value] = "result.pass">
+        [value] = "result.pass"
+        [subvalues] = "result.pass">
         <dxo-title text = {{result._id.jobName}}:{{result._id.buildId}}></dxo-title>
         <dxo-value-indicator color="green"></dxo-value-indicator>
+        <dxo-subvalue-indicator color = "green" type="textCloud"></dxo-subvalue-indicator>
         <dxo-scale [endValue] = "result.total"></dxo-scale>
       </dx-linear-gauge>
       <ul>
@@ -15,8 +17,9 @@
         <li>Start Time: {{result.startTime}}</li>
       </ul>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-8 jobChart">
       <dx-pie-chart
+        class="pieChart"
         palette="bright"
         [dataSource]="result.detail">
         <dxi-series
@@ -25,6 +28,16 @@
         </dxi-series>
       </dx-pie-chart>
     </div>
+  </div>
+  <div class="row categoryDetails">
+    <ag-grid-angular
+      style="width: 100%; height: 400px;"
+      class="ag-fresh"
+      [rowData]="result.detail"
+      [columnDefs]="columnDefs"
+      [enableSorting]="true"
+      [enableFilter]="true">
+    </ag-grid-angular>
   </div>
 </div>
 

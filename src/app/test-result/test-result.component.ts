@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MongoService} from '../services/mongo.service';
 import {ActivatedRoute} from '@angular/router';
 import {DailyReportJob} from '../data-model/daily-report-job';
+import {LinkComponent} from "../daily-report/link/link.component";
 
 @Component({
   selector: 'app-test-result',
@@ -12,15 +13,24 @@ export class TestResultComponent implements OnInit {
   jobName: string;
   buildId: string;
   columnDefs = [
-    {headerName: 'Test Class', field: 'testClassName', suppressSizeToFit: true},
-    {headerName: 'Test Name', field: 'testName'},
-    {headerName: 'Pass', valueGetter: function (params) {
-      return !params.testFailed;
+    { headerName: 'Category',
+      width: 420,
+      valueGetter: function(params) {
+        return {'category': params.data.combinedCategory, 'reportUrl': params.data._id.reportUrl}; },
+      cellRendererFramework: LinkComponent},
+    {headerName: 'Total', width: 160, field: 'total'},
+    {headerName: 'Pass', width: 160, valueGetter: function(params) {
+      const data = params.data;
+      return data.pass + '(' + data.pass_percent  + '%)';
     }},
-    {headerName: 'Category', field: 'category'},
-    {headerName: 'Duration', valueGetter: function (params) {
-      return Math.round(params.data.testDuration * 100) / 100;
+    {headerName: 'Fail', width: 160, valueGetter: function(params) {
+      const data = params.data;
+      return data.fail + '(' + data.fail_percent + '%)';
     }},
+    {headerName: 'Unstable', width: 160, valueGetter: function(params) {
+      const data = params.data;
+      return data.unstable + '(' + data.unstable_percent + '%)';
+    }}
   ];
 
   result: DailyReportJob;
