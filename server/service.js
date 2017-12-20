@@ -26,7 +26,6 @@ const sendRes = function (res, content) {
 
 const getMailReceivers = function() {
   return new Promise((resolve, reject) => {
-    console
     mongoClient.connect(SETTINGS_DB_CONN_STR, function (err,db) {
       db.collection('mail').find().toArray(function (err, result) {
         resolve(result[0].receivers);
@@ -80,6 +79,15 @@ const sendDailyReports_mock = function(res, s, e){
   sendRes(res, mock_data.jobs);
 }
 
+const sendJobResult = function(res, name, buildId){
+  let condition = {"_id.jobName": name, "_id.buildId": buildId};
+  mongoClient.connect(FAILSAFE_DB_CONN_STR, function (err, db) {
+    db.collection('jobs').findOne(condition)
+      .then(result => sendRes(res, result));
+    db.close();
+  });
+};
+
 const sendDailyReports = function(res, s, e){
   /*
   Date query scope is [s, e).
@@ -113,19 +121,7 @@ const sendDailyReports = function(res, s, e){
 
   mongoClient.connect(FAILSAFE_DB_CONN_STR, function (err, db) {
     db.collection('jobs').find(condition).toArray()
-      .then(result => {
-        result.forEach(job => job.detail.forEach(
-          i => {
-            let list = i._id.category.split('/');
-            i._id.category = list[list.length-1];
-            let idx =  i._id.reportUrl.indexOf('TEST_TYPE=');
-            if (idx != -1) {
-              i.type = i._id.reportUrl.substring(idx+10).split(',')[0];
-            }
-          }
-        ));
-        sendRes(res, result);
-      });
+      .then(result => sendRes(res, result));
     db.close();
   });
 };
@@ -229,6 +225,10 @@ app.get('/', function (req, res) {
 
 app.get('/api/failsafereports/:jobName/:buildId', function (req, res) {
   sendFailsafeReports(res, {jobName: req.params.jobName, buildId: +req.params.buildId});
+});
+
+app.get('/api/job/:jobName/:buildId', function (req, res) {
+  sendJobResult(res, req.params.jobName,parseInt(req.params.buildId));
 });
 
 app.get('/api/jobs', function (req, res) {
