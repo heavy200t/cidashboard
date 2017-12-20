@@ -1,0 +1,240 @@
+{
+  "_id" : {
+    "jobName" : "SAW-Build-generic",
+    "buildId" : 6622
+  },
+  "total" : 2206.0,
+  "pass" : 1495.0,
+  "fail" : 711.0,
+  "unstable" : 236.0,
+  "startTime" : ISODate("2017-12-20T06:20:01.823Z"),
+  "pass_percent" : 67.77,
+  "fail_percent" : 32.23,
+  "unstable_percent" : 10.7,
+  "detail" : [
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/requires-services",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB/GIT_BRANCH=ci,GIT_REPOSITORY=itsma-x,TEST=requires-services,jdk=jdk-8u74,label_exp=linux_slave/80389/testReport"
+      },
+      "total" : 395.0,
+      "pass" : 250.0,
+      "fail" : 145.0,
+      "unstable" : 104.0,
+      "category" : "requires-services",
+      "type" : undefined,
+      "combinedCategory" : "requires-services",
+      "pass_percent" : 63.29,
+      "fail_percent" : 36.71,
+      "unstable_percent" : 26.33
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/core-ui",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-UI-USB-SNB/GIT_BRANCH=ci,TEST=core-ui,TEST_TYPE=serial-test-ui,USER_LOCALE=en,jdk=jdk-8u74,label_exp=linux_slave/57116/testReport"
+      },
+      "total" : 108.0,
+      "pass" : 97.0,
+      "fail" : 11.0,
+      "unstable" : 0.0,
+      "category" : "core-ui",
+      "type" : "serial-test-ui",
+      "combinedCategory" : "core-ui[serial-test-ui]",
+      "pass_percent" : 89.81,
+      "fail_percent" : 10.19,
+      "unstable_percent" : 0.0
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/saw-tests",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-SAW-Tests-Integration-Server-USB-SNB/GIT_BRANCH=ci,GIT_REPOSITORY=itsma-x,TEST=saw-tests,jdk=jdk-8u74,label_exp=linux_slave/32920/testReport"
+      },
+      "total" : 355.0,
+      "pass" : 223.0,
+      "fail" : 132.0,
+      "unstable" : 40.0,
+      "category" : "saw-tests",
+      "type" : undefined,
+      "combinedCategory" : "saw-tests",
+      "pass_percent" : 62.82,
+      "fail_percent" : 37.18,
+      "unstable_percent" : 11.27
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/tenant-management",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB/GIT_BRANCH=ci,GIT_REPOSITORY=itsma-x,TEST=tenant-management,jdk=jdk-8u74,label_exp=linux_slave/80387/testReport"
+      },
+      "total" : 9.0,
+      "pass" : 9.0,
+      "fail" : 0.0,
+      "unstable" : 1.0,
+      "category" : "tenant-management",
+      "type" : undefined,
+      "combinedCategory" : "tenant-management",
+      "pass_percent" : 100.0,
+      "fail_percent" : 0.0,
+      "unstable_percent" : 11.11
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/tenants-creation",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB/GIT_BRANCH=ci,GIT_REPOSITORY=itsma-x,TEST=tenants-creation,jdk=jdk-8u74,label_exp=linux_slave/80385/testReport"
+      },
+      "total" : 1.0,
+      "pass" : 1.0,
+      "fail" : 0.0,
+      "unstable" : 0.0,
+      "category" : "tenants-creation",
+      "type" : undefined,
+      "combinedCategory" : "tenants-creation",
+      "pass_percent" : 100.0,
+      "fail_percent" : 0.0,
+      "unstable_percent" : 0.0
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/rest-cpf",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB/GIT_BRANCH=ci,GIT_REPOSITORY=itsma-x,TEST=rest-cpf,jdk=jdk-8u74,label_exp=linux_slave/80386/testReport"
+      },
+      "total" : 5.0,
+      "pass" : 5.0,
+      "fail" : 0.0,
+      "unstable" : 0.0,
+      "category" : "rest-cpf",
+      "type" : undefined,
+      "combinedCategory" : "rest-cpf",
+      "pass_percent" : 100.0,
+      "fail_percent" : 0.0,
+      "unstable_percent" : 0.0
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/xsp-x",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-SAW-Tests-Integration-Server-USB-SNB/GIT_BRANCH=ci,GIT_REPOSITORY=itsma-x,TEST=xsp-x,jdk=jdk-8u74,label_exp=linux_slave/32918/testReport"
+      },
+      "total" : 1.0,
+      "pass" : 1.0,
+      "fail" : 0.0,
+      "unstable" : 0.0,
+      "category" : "xsp-x",
+      "type" : undefined,
+      "combinedCategory" : "xsp-x",
+      "pass_percent" : 100.0,
+      "fail_percent" : 0.0,
+      "unstable_percent" : 0.0
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/hardcoded-tenants-saw-server",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-SAW-Tests-Integration-Server-USB-SNB/GIT_BRANCH=ci,GIT_REPOSITORY=itsma-x,TEST=hardcoded-tenants-saw-server,jdk=jdk-8u74,label_exp=linux_slave/32919/testReport"
+      },
+      "total" : 1.0,
+      "pass" : 1.0,
+      "fail" : 0.0,
+      "unstable" : 0.0,
+      "category" : "hardcoded-tenants-saw-server",
+      "type" : undefined,
+      "combinedCategory" : "hardcoded-tenants-saw-server",
+      "pass_percent" : 100.0,
+      "fail_percent" : 0.0,
+      "unstable_percent" : 0.0
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/ui",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-UI-USB-SNB/GIT_BRANCH=ci,TEST=ui,TEST_TYPE=serial-test-saw-ui,USER_LOCALE=en,jdk=jdk-8u74,label_exp=linux_slave/57118/testReport"
+      },
+      "total" : 179.0,
+      "pass" : 103.0,
+      "fail" : 76.0,
+      "unstable" : 10.0,
+      "category" : "ui",
+      "type" : "serial-test-saw-ui",
+      "combinedCategory" : "ui[serial-test-saw-ui]",
+      "pass_percent" : 57.54,
+      "fail_percent" : 42.46,
+      "unstable_percent" : 5.59
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/lms-gateway",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB/GIT_BRANCH=ci,GIT_REPOSITORY=itsma-x,TEST=lms-gateway,jdk=jdk-8u74,label_exp=linux_slave/80391/testReport"
+      },
+      "total" : 7.0,
+      "pass" : 7.0,
+      "fail" : 0.0,
+      "unstable" : 1.0,
+      "category" : "lms-gateway",
+      "type" : undefined,
+      "combinedCategory" : "lms-gateway",
+      "pass_percent" : 100.0,
+      "fail_percent" : 0.0,
+      "unstable_percent" : 14.29
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/hardcoded-tenants",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB/GIT_BRANCH=ci,GIT_REPOSITORY=itsma-x,TEST=hardcoded-tenants,jdk=jdk-8u74,label_exp=linux_slave/80388/testReport"
+      },
+      "total" : 28.0,
+      "pass" : 22.0,
+      "fail" : 6.0,
+      "unstable" : 12.0,
+      "category" : "hardcoded-tenants",
+      "type" : undefined,
+      "combinedCategory" : "hardcoded-tenants",
+      "pass_percent" : 78.57,
+      "fail_percent" : 21.43,
+      "unstable_percent" : 42.86
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/ui",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-UI-USB-SNB/GIT_BRANCH=ci,TEST=ui,TEST_TYPE=xsp-x,USER_LOCALE=en,jdk=jdk-8u74,label_exp=linux_slave/57119/testReport"
+      },
+      "total" : 1.0,
+      "pass" : 1.0,
+      "fail" : 0.0,
+      "unstable" : 0.0,
+      "category" : "ui",
+      "type" : "xsp-x",
+      "combinedCategory" : "ui[xsp-x]",
+      "pass_percent" : 100.0,
+      "fail_percent" : 0.0,
+      "unstable_percent" : 0.0
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/ui",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-UI-USB-SNB/GIT_BRANCH=ci,TEST=ui,TEST_TYPE=msp,USER_LOCALE=en,jdk=jdk-8u74,label_exp=linux_slave/57120/testReport"
+      },
+      "total" : 48.0,
+      "pass" : 48.0,
+      "fail" : 0.0,
+      "unstable" : 0.0,
+      "category" : "ui",
+      "type" : "msp",
+      "combinedCategory" : "ui[msp]",
+      "pass_percent" : 100.0,
+      "fail_percent" : 0.0,
+      "unstable_percent" : 0.0
+    },
+    {
+      "_id" : {
+        "category" : "MaaS-SAW-Aggregator-Integration-Tests-Runner-USB-SNB1/SNB_sync/acceptance-and-qa-flows",
+        "reportUrl" : "http://sh-maas-jenkins-master.hpeswlab.net:8080/jenkins/job/MaaS-Job-Tests-Integration-Server-USB-SNB/GIT_BRANCH=ci,GIT_REPOSITORY=itsma-x,TEST=acceptance-and-qa-flows,jdk=jdk-8u74,label_exp=linux_slave/80390/testReport"
+      },
+      "total" : 1068.0,
+      "pass" : 727.0,
+      "fail" : 341.0,
+      "unstable" : 68.0,
+      "category" : "acceptance-and-qa-flows",
+      "type" : undefined,
+      "combinedCategory" : "acceptance-and-qa-flows",
+      "pass_percent" : 68.07,
+      "fail_percent" : 31.93,
+      "unstable_percent" : 6.37
+    }
+  ]
+}

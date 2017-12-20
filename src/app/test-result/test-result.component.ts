@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MongoService} from '../services/mongo.service';
-import {FailsafeReport} from '../data-model/failsafe-reports';
 import {ActivatedRoute} from '@angular/router';
+import {DailyReportJob} from '../data-model/daily-report-job';
 
 @Component({
   selector: 'app-test-result',
@@ -23,13 +23,15 @@ export class TestResultComponent implements OnInit {
     }},
   ];
 
-  failsafeReports: FailsafeReport[];
+  result: DailyReportJob;
 
   constructor(private mongoService: MongoService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.jobName = this.route.snapshot.paramMap.get('jobName');
     this.buildId = this.route.snapshot.paramMap.get('buildId');
-    this.mongoService.getFailsafeReports(this.jobName, this.buildId).subscribe(res => this.failsafeReports = res);
+    this.mongoService.getTestResult(this.jobName, this.buildId).subscribe(res => {
+      this.result = res;
+    });
   }
 }

@@ -1,16 +1,21 @@
-const {Builder, By, Key, until, Capabilities}  = require('selenium-webdriver');
-const mock_data = require('./mock.json');
 const express = require('express');
-const nodemailer = require('nodemailer');
 const mongoClient = require('mongodb');
 const app = express();
-const DB_CONN_STR = 'mongodb://'+process.env.MONGO_SERVER+':' + process.env.MONGO_PORT + '/failsafereports';
+const FAILSAFE_DB_CONN_STR = 'mongodb://'+process.env.MONGO_SERVER+':' + process.env.MONGO_PORT + '/failsafereports';
+const SETTINGS_DB_CONN_STR = 'mongodb://'+process.env.MONGO_SERVER+':' + process.env.MONGO_PORT + '/settings';
+
+
+const {Builder, By, Key, until, Capabilities}  = require('selenium-webdriver');
+const nodemailer = require('nodemailer');
 const pug = require('pug');
-const compileFunction = pug.compileFile('templates/mail.pug');
+const compileFunction = pug.compileFile('mail.pug');
+
+const SELENIUM_HUB = 'http://shc-selenium-hub.hpeswlab.net:4444/wd/hub';
+const URL_BASE = 'http://shc-devops-master.hpeswlab.net:30080/dailyReport/';
 
 var driver = new Builder()
   .forBrowser('chrome')
-  .usingServer('http://shc-selenium-hub.hpeswlab.net:4444/wd/hub')
+  .usingServer(SELENIUM_HUB)
   .build();
 
 const sendRes = function (res, content) {
@@ -19,17 +24,19 @@ const sendRes = function (res, content) {
   res.send(content);
 };
 
-function sleep(delay) {
-  return function () {
-    return new Promise(function (resolve, reject) {
-      setTimeout(resolve, delay);
+const getMailReceivers = function() {
+  return new Promise((resolve, reject) => {
+    mongoClient.connect(SETTINGS_DB_CONN_STR, function (err,db) {
+      db.collection('mail').find().toArray(function (err, result) {
+        resolve(result[0].receivers);
+      })
     });
-  }
+  });
 }
 
 const sendFailsafeReports = function(res, queryCriteria) {
   queryCriteria = queryCriteria || {};
-  mongoClient.connect(DB_CONN_STR, function (err,db) {
+  mongoClient.connect(FAILSAFE_DB_CONN_STR, function (err,db) {
     db.collection('reports').find(queryCriteria).limit(100)
       .toArray(function (err, result){
         sendRes(res, result);
@@ -41,7 +48,7 @@ const sendFailsafeReports = function(res, queryCriteria) {
 const sendJobs = function (res) {
   let today = new Date();
   let start = new Date(today.setDate(today.getDate() - 7));
-  mongoClient.connect(DB_CONN_STR, function (err, db) {
+  mongoClient.connect(FAILSAFE_DB_CONN_STR, function (err, db) {
     db.collection('reports').
       distinct("jobName", {insertionTime: {$gte: start}})
       .then(result => sendRes(res, result));
@@ -52,7 +59,7 @@ const sendJobs = function (res) {
 const sendBuilds = function(res, jobName){
   let today = new Date();
   let start = new Date(today.setDate(today.getDate() - 7));
-  mongoClient.connect(DB_CONN_STR, function (err, db) {
+  mongoClient.connect(FAILSAFE_DB_CONN_STR, function (err, db) {
     db.collection('jobs').distinct("jobName", {insertionTime: {$gte: start}, jobName: jobName})
       .then(result => sendRes(res, result));
     db.close();
@@ -71,6 +78,15 @@ const sendDailyReports_mock = function(res, s, e){
     }));
   sendRes(res, mock_data.jobs);
 }
+
+const sendJobResult = function(res, name, buildId){
+  let condition = {"_id.jobName": name, "_id.buildId": buildId};
+  mongoClient.connect(FAILSAFE_DB_CONN_STR, function (err, db) {
+    db.collection('jobs').findOne(condition)
+      .then(result => sendRes(res, result));
+    db.close();
+  });
+};
 
 const sendDailyReports = function(res, s, e){
   /*
@@ -103,21 +119,9 @@ const sendDailyReports = function(res, s, e){
   condition["startTime"].$gte = start;
   condition["startTime"].$lt = end;
 
-  mongoClient.connect(DB_CONN_STR, function (err, db) {
+  mongoClient.connect(FAILSAFE_DB_CONN_STR, function (err, db) {
     db.collection('jobs').find(condition).toArray()
-      .then(result => {
-        result.forEach(job => job.detail.forEach(
-          i => {
-            let list = i._id.category.split('/');
-            i._id.category = list[list.length-1];
-            let idx =  i._id.reportUrl.indexOf('TEST_TYPE=');
-            if (idx != -1) {
-              i.type = i._id.reportUrl.substring(idx+10).split(',')[0];
-            }
-          }
-        ));
-        sendRes(res, result);
-      });
+      .then(result => sendRes(res, result));
     db.close();
   });
 };
@@ -128,7 +132,7 @@ const calcDailyReports = function(res, d){
     date = '"' +d+ '"';
   };
   let command = 'db.loadServerScripts(); calcJobs(new Date(' + date + '));'
-  mongoClient.connect(DB_CONN_STR, function (err, db) {
+  mongoClient.connect(FAILSAFE_DB_CONN_STR, function (err, db) {
     db.eval(command, function (err, result) {
       sendRes(res, "Success.");
     });
@@ -136,86 +140,84 @@ const calcDailyReports = function(res, d){
   });
 };
 
-const captureScreenShot = function (fileName, url) {
+const sleep = function(delay) {
+  return function () {
+    return new Promise(function (resolve, reject) {
+      setTimeout(resolve, delay);
+    });
+  }
+}
+
+const sendMail = function(fileName, url, cid) {
+  return new Promise((resolve, reject) => {
+    getMailReceivers().then(
+      receivers => {
+        nodemailer.createTestAccount((err, account) => {
+          let transporter = nodemailer.createTransport({
+            host: 'smtp3.hpe.com',
+            port: 25
+          });
+
+          let mailOptions = {
+            from: 'noreply@hpe.com',
+            to: receivers,
+            subject: 'Automation daily report - ' + cid,
+            html: compileFunction({url: url, cid: cid}),
+            attachments:[{
+              filename: fileName,
+              path: './' + fileName,
+              contentTpe: 'image/png',
+              contentDisposition: "inline",
+              cid: cid
+            }]
+          };
+          console.log(compileFunction({url: url, cid: cid}));
+          transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              reject(error);
+            } else {
+              resolve('Mail sent!')
+            }
+          });
+        });
+      }
+    );
+  });
+};
+
+const screenCapture = function () {
   return new Promise(resolve => {
-    let pageWidth = 0;
-    let pageHeight = 0;
+    var driver = new Builder()
+      .forBrowser('chrome')
+      .usingServer(SELENIUM_HUB)
+      .build();
+    let today = new Date();
+    let yesterday = new Date(today.setDate(today.getDate() - 1));
+    let str_yesterday = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1).toString() + '-' + yesterday.getDate();
+    let url = URL_BASE + str_yesterday;
+    let screenshotFileName = 'dailyReport_' + str_yesterday + '.png';
+    console.log(screenshotFileName);
+    console.log(url);
+    console.log(str_yesterday);
+    driver.manage().window().setSize(1240, 1024);
     driver.get(url)
       .then(_ => driver.findElement(By.tagName('app-daily-report')))
-      .then(sleep(10000))
-      .then(_ => driver.wait(until.elementIsVisible(driver.findElement(By.tagName('ag-grid-angular'))),10000))
-      .then(sleep(3000))
-      .then(_ => driver.findElement(By.tagName('body')).getSize()
-        .then((size) => {
-          pageWidth = size.width;
-          pageHeight = size.height;
-        }))
-      .then(_ => {
-        console.log(pageWidth);
-        console.log(pageHeight);
-      })
-      .then(_ => {
-        driver.manage().window().setSize(pageWidth, pageHeight)
-      })
+      .then(sleep(5000))
+      .then(_ => driver.wait(until.elementIsVisible(driver.findElement(By.tagName('ag-grid-angular')))))
       .then(
         _ => {
           driver.takeScreenshot().then(function (image,err) {
-            require('fs').writeFile(fileName,image, 'base64', function (err) {
+            require('fs').writeFile(screenshotFileName,image, 'base64', function (err) {
             });
           });
         }
       )
       .then(_ => {
         driver.close();
-        resolve({
-          "filename": fileName,
-          "path": './'+fileName,
-          "contentTpe": 'image/png',
-          "contentDisposition": "inline",
-          "cid": 'dailyReport_screenCapture'
-        });
-      });
+        resolve({fileName: screenshotFileName, url: url, cid: str_yesterday});
+      })
   });
 }
-
-const sendDailyReportMail = function(res){
-  let today = new Date();
-  let yesterday = new Date(today.setDate(today.getDate() - 1));
-  let str_yesterday = yesterday.getFullYear() + '-' + (yesterday.getMonth() + 1).toString() + '-' + yesterday.getDate();
-  let url = 'http://shc-devops-master.hpeswlab.net:30080/dailyReport/' + str_yesterday;
-  let screenshotFileName = 'dailyReport_' + str_yesterday + '.png';
-  nodemailer.createTestAccount((err, account) => {
-    let transporter = nodemailer.createTransport({
-      host: 'smtp3.hpe.com',
-      port: 25
-    });
-
-    let mailOptions = {
-      from: 'test@hpe.com',
-      to: 'bpan@hpe.com',
-      subject: 'Automation daily report - ' + str_yesterday,
-      html: compileFunction({"url": url, "cid": "dailyReport_screenCapture"}),
-      attachments:[]
-    };
-
-    captureScreenShot(screenshotFileName, url).then(attachment => {
-      mailOptions.attachments.push(attachment);
-      new Promise((resolve, reject) => {
-        resolve;
-      })
-    }).then(_ => {
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          return console.log(error);
-        }
-        console.log('Message sent: %s', info.message);
-        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-        res.send('Mail is sent successfully.');
-      });
-    });
-  });
-
-};
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
@@ -223,6 +225,10 @@ app.get('/', function (req, res) {
 
 app.get('/api/failsafereports/:jobName/:buildId', function (req, res) {
   sendFailsafeReports(res, {jobName: req.params.jobName, buildId: +req.params.buildId});
+});
+
+app.get('/api/job/:jobName/:buildId', function (req, res) {
+  sendJobResult(res, req.params.jobName,parseInt(req.params.buildId));
 });
 
 app.get('/api/jobs', function (req, res) {
@@ -234,18 +240,18 @@ app.get('/api/dailyReports', function (req, res) {
 });
 
 app.get('/api/dailyReportMail', function (req, res) {
-  sendDailyReportMail(res);
+  screenCapture()
+    .then(forMail => sendMail(forMail.fileName, forMail.url, forMail.cid))
+    .then(message => res.send(message));
 });
 
 app.get('/api/:jobName/builds', function (req, res) {
   sendBuilds(res, req.params.jobName);
 });
 
-app.get('/api/calcDailyReport', function (req, res)  {
-  calcDailyReports(res, req.query['date']);
+app.get('/api/mailReceivers', function (req, res) {
+  getMailReceivers().then(receivers => res.send(receivers));
 });
-
-
 
 const server = app.listen(3000, function () {
   let host = server.address().address;

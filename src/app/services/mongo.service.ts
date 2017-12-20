@@ -39,4 +39,9 @@ export class MongoService {
     const url = `${this.baseUrl}/${jobName}/builds`;
     return this.http.get<String[]>(url);
   }
+
+  getTestResult(jobName: string, buildId: string): Observable<DailyReportJob> {
+    const url = `${this.baseUrl}/job/${jobName}/${buildId}`;
+    return this.http.get<DailyReportJob>(url);
+  }
 }

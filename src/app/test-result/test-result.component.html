@@ -1,15 +1,30 @@
-<h1>Test Results</h1>
-<h2>
-  Job Name:
-  <span>{{jobName}}</span>
-</h2>
-<h2>
-  Build Id:
-  <span>{{buildId}}</span>
-</h2>
-<ag-grid-angular style="width: 100%; height: 600px;"
-                 class="ag-fresh"
-                 [rowData]="failsafeReports"
-                 [columnDefs]="columnDefs"
-                 [enableColResize]="true">
-</ag-grid-angular>
+<div *ngIf="result" class="container">
+  <div class = "row">
+    <div class = "col-lg-4">
+      <dx-linear-gauge
+        [value] = "result.pass">
+        <dxo-title text = {{result._id.jobName}}:{{result._id.buildId}}></dxo-title>
+        <dxo-value-indicator color="green"></dxo-value-indicator>
+        <dxo-scale [endValue] = "result.total"></dxo-scale>
+      </dx-linear-gauge>
+      <ul>
+        <li>Total: {{result.total}} </li>
+        <li style="color: green;">Pass: {{result.pass}}({{result.pass_percent}}%)</li>
+        <li style="color: red">Fail: {{result.fail}}({{result.fail_percent}}%)</li>
+        <li style="color: orangered">Unstable: {{result.unstable}}({{result.unstable_percent}}%)</li>
+        <li>Start Time: {{result.startTime}}</li>
+      </ul>
+    </div>
+    <div class="col-lg-8">
+      <dx-pie-chart
+        palette="bright"
+        [dataSource]="result.detail">
+        <dxi-series
+          argumentField="combinedCategory"
+          valueField="total">
+        </dxi-series>
+      </dx-pie-chart>
+    </div>
+  </div>
+</div>
+
