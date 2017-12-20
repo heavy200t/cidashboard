@@ -15,9 +15,9 @@
           </dx-linear-gauge>
           <ul>
             <li>Total: {{job.total}} </li>
-            <li style="color: green;">Pass: {{getPercent(job.pass, job.total)}}%</li>
-            <li style="color: red">Fail: {{getPercent(job.fail, job.total)}}%</li>
-            <li style="color: orangered">Unstable: {{getPercent(job.unstable, job.total)}}%</li>
+            <li style="color: green;">Pass: {{job.pass}}({{job.pass_percent}}%)</li>
+            <li style="color: red">Fail: {{job.fail}}({{job.fail_percent}}%)</li>
+            <li style="color: orangered">Unstable: {{job.unstable}}({{job.unstable_percent}}%)</li>
             <li>Start Time: {{job.startTime}}</li>
           </ul>
 
@@ -25,10 +25,10 @@
           <dx-pie-chart
             style="height: 300px"
             palette="bright"
-            [dataSource]="countByCategory(job)">
+            [dataSource]="job.detail">
             <dxi-series
-              argumentField="category"
-              valueField="cnt">
+              argumentField="combinedCategory"
+              valueField="total">
             </dxi-series>
             <!--<dxo-size [width]="500"></dxo-size>-->
           </dx-pie-chart>

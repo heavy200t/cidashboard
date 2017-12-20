@@ -24,18 +24,6 @@ export class DailyReportComponent implements OnInit {
   areas: CategoryCount[] = [];
   date: Date;
 
-  combineCategory (c, t) {
-    let ret = c;
-    if (!isUndefined(t)) {
-      ret += '[' + t + ']';
-    }
-    return ret;
-  }
-
-  getPercent(value: number, total: number) {
-    return Math.round(value * 10000 / total) / 100;
-  }
-
   constructor(private mongoService: MongoService, private route: ActivatedRoute) {
     this.gridOptions = <GridOptions>{};
   }
@@ -50,8 +38,7 @@ export class DailyReportComponent implements OnInit {
     }
 
 
-    getReports.
-    subscribe(res => this.jobs = res );
+    getReports.subscribe(res => this.jobs = res );
     this.columnDefs = [
       { headerName: 'Category',
         width: 410,
@@ -75,28 +62,6 @@ export class DailyReportComponent implements OnInit {
   }
 
   getJobDetails(job: DailyReportJob) {
-    job.detail.forEach(i => {
-      i.combinedCategory = this.combineCategory(i._id.category, i.type);
-      i.pass_percent = this.getPercent(i.pass, i.total);
-      i.fail_percent = this.getPercent(i.fail, i.total);
-      i.unstable_percent = this.getPercent(i.unstable, i.total);
-    });
     return job.detail;
-  }
-
-  countByCategory(job: DailyReportJob) {
-    const data = this.areas;
-    job.detail.forEach(i => {
-      // const category = i._id.category;
-      const found = data.find(item => item.category === i._id.category);
-      if (isUndefined(found)) {
-        data.push({category: i._id.category, cnt: 1});
-      } else {
-        found.cnt += 1;
-      }
-    });
-
-    return data;
-
   }
 }
