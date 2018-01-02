@@ -14,3 +14,4 @@ export class FailsafeReport {
   jobName: string;
   insertionTime: Date;
 }
+

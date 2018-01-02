@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  'backend_server': 'localhost',
-  'backend_port': 3000
+  'backend_server': 'shc-devops-master.hpeswlab.net',
+  'backend_port': 30030
 };

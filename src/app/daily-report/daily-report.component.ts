@@ -21,7 +21,6 @@ export class DailyReportComponent implements OnInit {
   gridOptions: GridOptions;
   jobs: DailyReportJob[];
   columnDefs: any[];
-  areas: CategoryCount[] = [];
   date: Date;
 
   constructor(private mongoService: MongoService, private route: ActivatedRoute) {
@@ -54,7 +53,7 @@ export class DailyReportComponent implements OnInit {
         const data = params.data;
         return data.fail + '(' + data.fail_percent + '%)';
       }},
-      {headerName: 'Unstable', valueGetter: function(params) {
+      {headerName: 'Skipped', valueGetter: function(params) {
         const data = params.data;
         return data.unstable + '(' + data.unstable_percent + '%)';
       }}

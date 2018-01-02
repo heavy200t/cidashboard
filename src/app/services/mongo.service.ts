@@ -1,43 +1,32 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {FailsafeReport} from '../data-model/failsafe-reports';
 import {DailyReportJob} from '../data-model/daily-report-job';
 import { environment } from '../../environments/environment';
 import {isUndefined} from 'util';
+import {Job} from '../data-model/job';
+import {Build} from '../data-model/build';
 
 @Injectable()
 export class MongoService {
   private baseUrl = `http://${environment.backend_server}:${environment.backend_port}/api`;
   constructor(private http: HttpClient) { }
 
-  getFailsafeReports(jobName: string, buildId: string): Observable<FailsafeReport[]> {
-    const url = `${this.baseUrl}/failsafereports/${jobName}/${buildId}`;
-    return this.http.get<FailsafeReport[]>(url);
+  getQueryStringOfDate(d?: Date) {
+    return (isUndefined(d)) ? '' : `start=${d.getFullYear() + '-' + (d.getMonth() + 1).toString() + '-' + d.getDate()}`;
   }
 
   getDailyReports(d?: Date): Observable<DailyReportJob[]> {
-    let queryDate: string;
-    let url: string;
-    if (isUndefined(d)) {
-       url = `${this.baseUrl}/dailyReports`;
-    }else {
-      queryDate = d.getFullYear() + '-' + (d.getMonth() + 1).toString() + '-' + d.getDate();
-      console.log(queryDate);
-      url = `${this.baseUrl}/dailyReports?start=${queryDate}`;
-    }
-
-    return this.http.get<DailyReportJob[]>(url);
+    return this.http.get<DailyReportJob[]>(`${this.baseUrl}/dailyReports?${this.getQueryStringOfDate(d)}`);
   }
 
-  getJobList(): Observable<String[]> {
+  getJobList(): Observable<Job[]> {
     const url = `${this.baseUrl}/jobs`;
-    return this.http.get<String[]>(url);
+    return this.http.get<Job[]>(url);
   }
 
-  getBuilds(jobName: string): Observable<String[]> {
-    const url = `${this.baseUrl}/${jobName}/builds`;
-    return this.http.get<String[]>(url);
+  getBuilds(jobName: string, d?: Date): Observable<Build[]> {
+    return this.http.get<Build[]>(`${this.baseUrl}/${jobName}/builds?${this.getQueryStringOfDate(d)}`);
   }
 
   getTestResult(jobName: string, buildId: string): Observable<DailyReportJob> {

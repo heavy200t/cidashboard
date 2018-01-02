@@ -1,0 +1,33 @@
+/* Border styles */
+thead, tr {
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgb(39, 95, 230);
+}
+table {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(39, 95, 230);
+}
+
+/* Padding and font style */
+td, th {
+  padding: 5px 10px;
+  font-size: 12px;
+  color: rgb(35, 69, 177);
+}
+
+/* Alternating background colors */
+ tr:nth-child(even) {
+  background: rgb(174, 217, 238)
+}
+tr:nth-child(odd) {
+  background: #FFF
+}
+
+/*Table setting*/
+table {
+  empty-cells: show;
+}
+
+

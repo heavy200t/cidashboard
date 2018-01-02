@@ -8,16 +8,18 @@
         <td width="40%">
           <dx-linear-gauge
             [value] = "job.pass"
+            [subvalues] = "job.pass"
             style="width: 70%;" >
             <dxo-title text = {{job._id.jobName}}:{{job._id.buildId}}></dxo-title>
             <dxo-value-indicator color="green"></dxo-value-indicator>
+            <dxo-subvalue-indicator color = "green" type="textCloud"></dxo-subvalue-indicator>
             <dxo-scale [endValue] = "job.total"></dxo-scale>
           </dx-linear-gauge>
           <ul>
             <li>Total: {{job.total}} </li>
             <li style="color: green;">Pass: {{job.pass}}({{job.pass_percent}}%)</li>
             <li style="color: red">Fail: {{job.fail}}({{job.fail_percent}}%)</li>
-            <li style="color: orangered">Unstable: {{job.unstable}}({{job.unstable_percent}}%)</li>
+            <li style="color: orangered">Skipped: {{job.unstable}}({{job.unstable_percent}}%)</li>
             <li>Start Time: {{job.startTime}}</li>
           </ul>
 

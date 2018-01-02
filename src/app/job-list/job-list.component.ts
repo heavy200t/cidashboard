@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MongoService} from '../services/mongo.service';
+import {Job} from '../data-model/job';
 
 @Component({
   selector: 'app-job-list',
@@ -8,7 +9,8 @@ import {MongoService} from '../services/mongo.service';
 })
 
 export class JobListComponent implements OnInit {
-  jobs: String[];
+  jobs: Job[];
+  date: Date;
 
   constructor(private mongoService: MongoService) { }
 
@@ -16,5 +18,6 @@ export class JobListComponent implements OnInit {
     this.jobs = [];
     this.mongoService.getJobList().
     subscribe(res => this.jobs = res);
+
   }
 }

@@ -11,9 +11,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {AgGridModule} from 'ag-grid-angular';
 import { JobListComponent } from './job-list/job-list.component';
 import { BuildListComponent } from './build-list/build-list.component';
-import {AccordionModule} from 'ngx-bootstrap';
+import {AccordionModule, ProgressbarModule} from 'ngx-bootstrap';
 import { DailyReportComponent } from './daily-report/daily-report.component';
-import {DxLinearGaugeModule, DxPieChartModule, DxProgressBarModule} from 'devextreme-angular';
+import {DxChartModule, DxLinearGaugeModule, DxPieChartModule} from 'devextreme-angular';
 import { LinkComponent } from './daily-report/link/link.component';
 
 
@@ -32,8 +32,10 @@ import { LinkComponent } from './daily-report/link/link.component';
     BrowserModule,
     DxPieChartModule,
     DxLinearGaugeModule,
+    DxChartModule,
     AgGridModule.withComponents([LinkComponent]),
     AccordionModule.forRoot(),
+    ProgressbarModule.forRoot(),
     HttpClientModule,
     AppRoutingModule
   ],

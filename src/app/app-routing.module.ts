@@ -8,9 +8,10 @@ import {DailyReportComponent} from './daily-report/daily-report.component';
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'job-list', component: JobListComponent},
+  {path: 'job-list/:date', component: JobListComponent},
   {path: 'result/:jobName/:buildId', component: TestResultComponent},
-  {path: 'dailyReport/:date', component: DailyReportComponent},
-  {path: 'dailyReport', component: DailyReportComponent}
+  {path: 'dailyReport/:date', component: JobListComponent},
+  {path: 'dailyReport', component: JobListComponent}
 ];
 
 @NgModule({
