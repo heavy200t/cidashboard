@@ -1,6 +1,6 @@
-db.system.js.remove({_id: 'calcJobs'});
+db.system.js.remove({_id: 'calcBuilds'});
 db.system.js.insert({
-  _id: "calcJobs",
+  _id: "calcBuilds",
   value: function (start) {
     db.loadServerScripts();
     start.setHours(0);
@@ -9,7 +9,7 @@ db.system.js.insert({
     start = new Date(start);
     end = new Date(start);
     end.setDate(end.getDate() + 1 );
-    var data = db.reports.aggregate([
+    let data = db.reports.aggregate([
       {$match: {"insertionTime": {$gte: start, $lt: end}}},
       {$group: {
         _id: {jobName: "$jobName", buildId: "$buildId"},
@@ -18,16 +18,19 @@ db.system.js.insert({
         fail: {$sum: {$cond: {if: "$testFailed", then:1, else: 0}}},
         unstable: {$sum: {$cond: {if: "$markedUnstable", then:1, else: 0}}},
         startTime: {$min: "$insertionTime"}
+      }},
+      {$sort: {
+        "_id.jobName": 1,
+        "_id.buildId": 1
       }}
     ]);
     while(data.hasNext()){
-      var job = data.next();
-      job.pass_percent = calcPercent(job.pass, job.total);
-      job.fail_percent = calcPercent(job.fail, job.total);
-      job.unstable_percent = calcPercent(job.unstable, job.total);
-      job.detail = calcJobDetails(job);
-      db.jobs.remove({"_id": job._id});
-      db.jobs.insert(job);
+      let build = data.next();
+      build.pass_percent = calcPercent(build.pass, build.total);
+      build.fail_percent = calcPercent(build.fail, build.total);
+      build.unstable_percent = calcPercent(build.unstable, build.total);
+      build.detail = calcJobDetails(build);
+      db.builds.update({"_id": build._id}, {$set: build}, {upsert: true});
     }
   }
 });
