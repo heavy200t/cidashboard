@@ -60,19 +60,13 @@ exports.stringEnrich = function() {
       data = args;
     }
     for ( let key in data) {
-      let value = data[key];
-      if (undefined !== value) {
-        result = result.replaceAll("\\{" + key + "\\}", value);
+      if (data.hasOwnProperty(key)){
+        let value = data[key];
+        if (undefined !== value) {
+          result = result.replaceAll("\\{" + key + "\\}", value);
+        }
       }
     }
     return result;
-  }
-};
-
-exports.sleep = function(delay) {
-  return function () {
-    return new Promise(function (resolve, reject) {
-      setTimeout(resolve, delay);
-    });
   }
 };
