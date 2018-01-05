@@ -1,3 +1,5 @@
+// TODO: Add pr number.
+// TODO: Add change list.
 import {Component, Input, OnInit} from '@angular/core';
 import {MongoService} from '../services/mongo.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -25,7 +27,7 @@ export class BuildListComponent implements OnInit {
   localeDateTimeString(date: Date) {
     let d: Date;
     d = new Date(date);
-    return d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+    return d.toLocaleTimeString();
   }
 
   statusImage(build: Build) {
@@ -65,7 +67,7 @@ export class BuildListComponent implements OnInit {
   }
 
   hasBuilds() {
-    return (isUndefined(this.builds) || this.builds.length === 0);
+    return !(isUndefined(this.builds) || this.builds.length === 0);
   }
 
   gotoResult(build: Build) {
