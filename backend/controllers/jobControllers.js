@@ -59,6 +59,7 @@ function queryBuildStatus(job, buildId) {
         build.building = res.building;
         build.startTime = new Date(res.timestamp);
         build.description = res.description;
+        build.duration = res.duration;
         resolve(build);
       })
       .catch(err => reject(err));
@@ -138,6 +139,7 @@ exports.updateStatus = function (req, res) {
       break;
     }
   }
+
   job.latestBuild = req.body.build.number;
   queryBuildStatus(job, job.latestBuild)
     .then(build => {
