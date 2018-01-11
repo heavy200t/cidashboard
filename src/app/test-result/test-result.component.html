@@ -29,15 +29,33 @@
       </dx-pie-chart>
     </div>
   </div>
-  <div class="row categoryDetails">
-    <ag-grid-angular
-      style="width: 100%; height: 400px;"
-      class="ag-fresh"
-      [rowData]="result.detail"
-      [columnDefs]="columnDefs"
-      [enableSorting]="true"
-      [enableFilter]="true">
-    </ag-grid-angular>
+  <div class="row">
+    <dx-data-grid [dataSource]="result.detail">
+      <dxi-column
+        caption="Category"
+        [calculateCellValue]="categoryWithLink"
+        cellTemplate="categoryLink"></dxi-column>
+      <b><dxi-column
+        caption="Total"
+        dataField="total"></dxi-column></b>
+      <dxi-column
+        caption="Pass"
+        dataField="pass"
+        [calculateDisplayValue]="combinedPass"
+        alignment="right"> </dxi-column>
+      <dxi-column
+        caption="Fail"
+        dataField="fail"
+        [calculateDisplayValue]="combinedFail"
+        alignment="right"> </dxi-column>
+      <dxi-column
+        caption="Skip"
+        dataField="unstable"
+        [calculateDisplayValue]="combinedUnstable"
+        alignment="right"> </dxi-column>
+      <div *dxTemplate="let data of 'categoryLink'">
+        <a href="{{data.value.link}}" target="_blank">{{data.value.category}}</a>
+      </div>
+    </dx-data-grid>
   </div>
 </div>
-
