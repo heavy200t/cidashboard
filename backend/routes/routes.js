@@ -3,8 +3,6 @@ let mailCtrl = require('../controllers/mailControllers');
 module.exports = function(app){
   app.get('/ping', function (req, res) {res.send('Hello World!')});
 
-  app.get('/api/:jobName/:buildId', jobCtrl.getBuildResult.bind(jobCtrl));
-
   app.get('/api/job/:jobName/:buildId', jobCtrl.getBuildResult.bind(jobCtrl));
 
   app.get('/api/jobs', jobCtrl.getJobs.bind(jobCtrl));
