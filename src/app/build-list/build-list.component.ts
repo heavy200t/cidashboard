@@ -58,6 +58,29 @@ export class BuildListComponent implements OnInit {
     return ret;
   }
 
+  parseDuration(duration: number) {
+    let t: number;
+    t = duration / 1000;
+    let hour, min, sec: number;
+    hour = Math.floor(t / 3600);
+    t = t - hour * 3600;
+    min = Math.floor(t / 60);
+    t = t - min * 60;
+    sec = Math.floor(t / 60);
+    return {'hour': hour, 'min': min, 'sec': sec};
+  }
+
+  displayedDuration(duration: number) {
+    if (!isUndefined(duration)) {
+      const d = this.parseDuration(duration);
+      return [d.hour, d.min, d.sec].join(':');
+    }
+  }
+
+  customizeText = (arg: any) => {
+    return this.displayedDuration(parseInt(arg.value, 0));
+  };
+
   jobStatus(job) {
     if (job.running) {
       return 'Running';

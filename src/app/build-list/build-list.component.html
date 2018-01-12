@@ -14,35 +14,43 @@
           <th> Fail </th>
           <th> Skipped </th>
           <th> Start Time</th>
-          <th></th>
-          <th></th>
+          <th> Duration </th>
         </tr>
         </thead>
-        <tr *ngFor = "let build of builds">
-          <td><a target="_blank" href="{{build.url}}">{{build._id.buildId}}</a></td>
-          <td><img *ngIf="statusImage(build)" width="25px" height="25px" src="../../assets/{{statusImage(build)}}"/></td>
-          <td><div *ngIf="build.total">{{build.total}}</div></td>
-          <td><div *ngIf="build.pass">{{build.pass}}({{build.pass_percent}}%)</div></td>
-          <td><div *ngIf="build.fail">
-            <span style="color:red;">{{build.fail}}({{build.fail_percent}}%)</span>
-          </div></td>
-          <td><div *ngIf="build.unstable">
-            <span style="color: darkgrey">{{build.unstable}}({{build.unstable_percent}}%)</span>
-          </div></td>
-          <td>{{localeDateTimeString(build.startTime)}}</td>
-          <td width="100px">
-            <progressbar *ngIf="build.total" class="progress" [max]="build.total" [value]="buildStack(build)" type="success">
-              <b>{{build.pass_percent}}%</b>
-            </progressbar></td>
-          <td><button (click)="gotoResult(build)" *ngIf="build.detail">Details</button></td>
-        </tr>
+        <tbody *ngFor = "let build of builds">
+          <tr>
+            <td><a target="_blank" href="{{build.url}}">{{build._id.buildId}}</a></td>
+            <td><img *ngIf="statusImage(build)" width="25px" height="25px" src="../../assets/{{statusImage(build)}}"/></td>
+            <td><div *ngIf="build.total">{{build.total}}</div></td>
+            <td><div *ngIf="build.pass">{{build.pass}}({{build.pass_percent}}%)</div></td>
+            <td><div *ngIf="build.fail">
+              <span style="color:red;">{{build.fail}}({{build.fail_percent}}%)</span>
+            </div></td>
+            <td><div *ngIf="build.unstable">
+              <span style="color: darkgrey">{{build.unstable}}({{build.unstable_percent}}%)</span>
+            </div></td>
+            <td>{{localeDateTimeString(build.startTime)}}</td>
+            <td>{{displayedDuration(build.duration)}}</td>
+          </tr>
+          <tr>
+            <td colspan="4"><div [innerHTML]="build.description"></div></td>
+            <td colspan="2">
+              <progressbar *ngIf="build.total" class="progress" [max]="build.total" [value]="buildStack(build)" type="success">
+                <b>{{build.pass_percent}}%</b>
+              </progressbar>
+            </td>
+            <td><button (click)="gotoResult(build)" *ngIf="build.detail">Details</button></td>
+          </tr>
+        </tbody>
       </table>
     </div>
     <div class="col-xs-4">
       <dx-chart [dataSource]="builds">
-        <dxi-series valueField="pass" name="Pass" color="green"></dxi-series>
-        <dxi-series valueField="fail" name="Fail" color="red"></dxi-series>
-        <dxo-common-series-settings argumentField="buildId" type="fullStackedBar"></dxo-common-series-settings>
+        <dxi-series valueField="duration" name="Duration"></dxi-series>
+        <dxo-common-series-settings argumentField="buildId" type="spline"></dxo-common-series-settings>
+        <dxi-value-axis>
+          <dxo-label [customizeText]="customizeText"></dxo-label>
+        </dxi-value-axis>
         <dxo-legend verticalAlignment="top" horizontalAlignment="center" itemTextPosition="right"></dxo-legend>
       </dx-chart>
     </div>

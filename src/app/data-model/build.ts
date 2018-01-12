@@ -20,5 +20,7 @@ export class Build {
   unstable: number;
   unstable_percent: number;
   startTime: Date;
+  description: string;
   detail: BuildDetail[];
+  duration: number;
 }
