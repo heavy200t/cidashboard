@@ -15,6 +15,22 @@
   </files>
   <fileSets>
     <fileSet>
+      <directory>config</directory>
+      <outputDirectory>config</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>routes</directory>
+      <outputDirectory>routes</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>utils</directory>
+      <outputDirectory>utils</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>controllers</directory>
+      <outputDirectory>controllers</outputDirectory>
+    </fileSet>
+    <fileSet>
       <directory>node_modules</directory>
       <outputDirectory>node_modules</outputDirectory>
     </fileSet>
