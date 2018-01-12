@@ -16,6 +16,8 @@
         <li style="color: orangered">Unstable: {{result.unstable}}({{result.unstable_percent}}%)</li>
         <li>Start Time: {{result.startTime}}</li>
       </ul>
+      <dx-button text="Show all" (onClick)="doFilter('ALL')"></dx-button>
+      <dx-button text="Show failed" (onClick)="doFilter('FAIL')"></dx-button>
     </div>
     <div class="col-lg-8 jobChart">
       <dx-pie-chart
