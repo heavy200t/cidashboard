@@ -7,7 +7,7 @@ const utils = require('./utils/commonUtils');
 const app = express();
 const bodyParser = require('body-parser');
 
-utils.stringEnrich();
+utils.init();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

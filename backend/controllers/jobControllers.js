@@ -109,8 +109,10 @@ exports.getDailyReports = function(req, res){
 };
 
 exports.calcDailyReports = function(req, res){
-  let date = req.query['date'] ===undefined ? '': '"' + req.query['date'] + '"';
+  let d = req.query['date'] === undefined ? (new Date()): new Date(req.query['date']);
+  let date = d.format('yyyy-MM-dd');
   let command = 'db.loadServerScripts(); calcBuilds(new Date("{0}"));'.format(date);
+  console.log(command);
   mongoClient.connect(consts.DB_CONN_STR, function (err, db) {
     db.eval(command, function (err, result) {
       utils.sendRes(res, "Success.");
