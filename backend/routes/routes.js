@@ -9,6 +9,8 @@ module.exports = function(app){
 
   app.get('/api/dailyReports', jobCtrl.getDailyReports.bind(jobCtrl));
 
+  app.get('/api/migrateReports', jobCtrl.migrateReports.bind(jobCtrl));
+
   app.get('/api/dailyReportMail', mailCtrl.dailyReportMail.bind(mailCtrl));
 
   app.get('/api/:jobName/builds', jobCtrl.getBuilds.bind(jobCtrl));

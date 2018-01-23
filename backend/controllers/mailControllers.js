@@ -7,12 +7,11 @@ const screenCapture = require('../utils/screenCapture');
 const consts = require('../config/consts');
 
 
+//TODO: get from pg
 function queryMailReceivers() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     mongoClient.connect(consts.DB_CONN_STR, function (err,db) {
-      db.collection('settings').findOne().then(
-        setting => resolve(setting.mail.receivers)
-      )
+      db.collection('settings').findOne().then(setting => resolve(setting.mail.receivers))
     });
   });
 }
@@ -23,7 +22,7 @@ function sendMail (fileName, url, cid) {
   return new Promise((resolve, reject) => {
     queryMailReceivers().then(
       receivers => {
-        nodemailer.createTestAccount((err, account) => {
+        nodemailer.createTestAccount(() => {
           let transporter = nodemailer.createTransport({
             host: 'smtp3.hpe.com',
             port: 25
@@ -43,25 +42,25 @@ function sendMail (fileName, url, cid) {
             }]
           };
           console.log(compileFunction({url: url, cid: cid}));
-          transporter.sendMail(mailOptions, (error, info) => {
+          transporter.sendMail(mailOptions, (error) => {
             if (error) {
               reject(error);
             } else {
-              resolve('Mail sent!')
-            }
+              resolve('Mail sent!');
+            };
           });
         });
       }
     );
   });
-};
+}
 
 exports.getMailReceivers = function(req, res) {
   queryMailReceivers().then(receivers => utils.sendRes(res, receivers));
-}
+};
 
 exports.dailyReportMail = function (req, res) {
   screenCapture.run()
     .then(forMail => sendMail(forMail.fileName, forMail.url, forMail.cid))
     .then(message => res.send(message));
-}
+};
