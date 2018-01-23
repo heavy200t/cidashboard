@@ -114,7 +114,7 @@ exports.calcDailyReports = function(req, res){
   let command = 'db.loadServerScripts(); calcBuilds(new Date("{0}"));'.format(date);
   console.log(command);
   mongoClient.connect(consts.DB_CONN_STR, function (err, db) {
-    db.eval(command, function (err, result) {
+    db.eval(command, function () {
       utils.sendRes(res, "Success.");
     });
     db.close();
@@ -150,4 +150,3 @@ exports.updateStatus = function (req, res) {
     })
     .then(r => utils.sendRes(res, 'OK'));
 };
-
