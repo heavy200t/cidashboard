@@ -1,19 +1,22 @@
 'use strict';
 const mongoClient = require('mongodb');
 const utils = require('../utils/commonUtils');
-const consts = require('../config/consts');
+const config = require('../config/consts');
 const request = require('request-promise');
+const pg = require('../database/postgres');
 
 function saveBuild (build) {
   return new Promise((resolve, reject) => {
-    mongoClient.connect(consts.DB_CONN_STR, function (err,db) {
+    mongoClient.connect(config.DB_CONN_STR, function (err, db) {
       if (err !== null) {
         reject(err);
       }
       db.collection('builds').update({'_id': build._id}, build, {upsert: true})
-        .then(result => {
+        .then(() => {
           db.close();
-          resolve(result);
+          pg.upsertBuild(build)
+            .catch(e => console.log(e))
+            .then(() => resolve());
         })
         .catch(error => {
           console.log(error);
@@ -25,14 +28,16 @@ function saveBuild (build) {
 
 function saveJob(job) {
   return new Promise((resolve, reject) => {
-    mongoClient.connect(consts.DB_CONN_STR, function (err,db) {
+    mongoClient.connect(config.DB_CONN_STR, function (err, db) {
       if (err !== null) {
         reject(err);
       }
       db.collection('jobs').update({'name': job.name}, job, {upsert: true})
         .then(result => {
           db.close();
-          resolve(result);
+          pg.upsertJob(job)
+            .catch(e => console.log(e))
+            .then(() => resolve());
         })
         .catch(error => {
           console.log(error);
@@ -66,58 +71,96 @@ function queryBuildStatus(job, buildId) {
   });
 }
 
+// TODO: get from pg
 exports.getJobs = function (req, res) {
-      mongoClient.connect(consts.DB_CONN_STR, function (err, db) {
+      mongoClient.connect(config.DB_CONN_STR, function (err, db) {
         db.collection('jobs').find().toArray()
-          .then(result => utils.sendRes(res, result));
-        db.close();
+          .then(result => {
+            db.close();
+            utils.sendRes(res, result);
+          });
       });
 };
 
+// TODO: get from pg
 exports.getBuilds = function(req, res){
   let jobName = req.params.jobName;
   let cond = utils.timeCondition("startTime", req.query['start'], req.query['end']);
   cond["_id.jobName"] = jobName;
-  mongoClient.connect(consts.DB_CONN_STR, function (err, db) {
+  mongoClient.connect(config.DB_CONN_STR, function (err, db) {
     db.collection('builds').find(cond).toArray()
       .then(result => {
-        utils.sendRes(res, result);
         db.close();
+        utils.sendRes(res, result);
       });
   })
 };
 
+// TODO: get from pg
 exports.getBuildResult = function(req, res){
   let jobName = req.params.jobName;
   let buildId = parseInt(req.params.buildId);
   let condition = {"_id.jobName": jobName, "_id.buildId": buildId};
-  mongoClient.connect(consts.DB_CONN_STR, function (err, db) {
+  mongoClient.connect(config.DB_CONN_STR, function (err, db) {
     db.collection('builds').findOne(condition)
-      .then(result => utils.sendRes(res, result));
-    db.close();
+      .then(result => {
+        db.close();
+        utils.sendRes(res, result)
+      });
   });
 };
 
+// TODO: get from pg
 exports.getDailyReports = function(req, res){
   let s = req.query['start'];
   let e = req.query['end'];
-  mongoClient.connect(consts.DB_CONN_STR, function (err, db) {
+  mongoClient.connect(config.DB_CONN_STR, function (err, db) {
     db.collection('builds').find(utils.timeCondition("startTime", s, e)).toArray()
-      .then(result => utils.sendRes(res, result));
-    db.close();
+      .then(result => {
+        db.close();
+        utils.sendRes(res, result);
+      });
   });
+};
+
+exports.migrateReports = function(req, res){
+  pg.maxReportId()
+    .then(id => {
+      let cond = {};
+      if (id !== null) {
+        cond = {'_id': {$gt: new mongoClient.ObjectID(id)}};
+      }
+      mongoClient.connect(config.DB_CONN_STR, function (err, db) {
+        let c = db.collection('reports')
+          .find(cond)
+          .sort({'_id': 1})
+          .limit(10000);
+        let batch = [];
+        c.forEach(
+          report => batch.push(pg.insertReportToPg(report)),
+          () => {
+            Promise.all(batch).then(() => {
+              db.close();
+              utils.sendRes(res, 'success');
+            });
+          }
+        );
+      });
+    })
+    .catch(e => {
+      console.log(e);
+    });
 };
 
 exports.calcDailyReports = function(req, res){
   let d = req.query['date'] === undefined ? (new Date()): new Date(req.query['date']);
   let date = d.format('yyyy-MM-dd');
   let command = 'db.loadServerScripts(); calcBuilds(new Date("{0}"));'.format(date);
-  console.log(command);
-  mongoClient.connect(consts.DB_CONN_STR, function (err, db) {
-    db.eval(command, function () {
-      utils.sendRes(res, "Success.");
+  mongoClient.connect(config.DB_CONN_STR, function (err, db) {
+    db.eval(command, () => {
+      db.close();
+      utils.sendRes(res, 'success');
     });
-    db.close();
   });
 };
 
@@ -125,7 +168,7 @@ exports.updateStatus = function (req, res) {
   let job = {};
   job.lastUpdTime = new Date();
   job.name = req.body.name;
-  job.url = consts.JENKINS_BASE_URL + req.body.url;
+  job.url = config.JENKINS_BASE_URL + req.body.url;
   job.phase = req.body.build.phase;
   switch (job.phase) {
     case 'STARTED': {
@@ -146,7 +189,7 @@ exports.updateStatus = function (req, res) {
   queryBuildStatus(job, job.latestBuild)
     .then(build => {
       job.result = build.result;
-      Promise.all([saveJob(job), saveBuild(build)]);
-    })
-    .then(r => utils.sendRes(res, 'OK'));
+      Promise.all([saveJob(job), saveBuild(build)])
+        .then(r => utils.sendRes(res, 'OK'));
+    });
 };
