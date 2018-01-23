@@ -12,6 +12,7 @@
     "express": "^4.16.2",
     "mongodb": "^2.2.33",
     "nodemailer": "^4.4.1",
+    "pg": "^7.4.1",
     "pug": "^2.0.0-rc.4",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
