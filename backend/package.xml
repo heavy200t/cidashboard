@@ -31,6 +31,10 @@
       <outputDirectory>controllers</outputDirectory>
     </fileSet>
     <fileSet>
+      <directory>database</directory>
+      <outputDirectory>database</outputDirectory>
+    </fileSet>
+    <fileSet>
       <directory>node_modules</directory>
       <outputDirectory>node_modules</outputDirectory>
     </fileSet>

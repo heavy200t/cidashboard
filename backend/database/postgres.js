@@ -133,3 +133,36 @@ exports.upsertJob = function(job) {
     });
   });
 };
+
+exports.setSetting = function(key, value){
+  return new Promise((resolve, reject) => {
+    pool.connect().then(client => {
+      client.query('INSERT INTO settings (key, value) VALUES ($1, $2)' +
+        ' ON CONFLICT(key) DO UPDATE SET value = $2', [key, value])
+        .catch(e => {
+          client.release();
+          reject(e);
+        })
+        .then(() => {
+          client.release();
+          resolve();
+        });
+    });
+  });
+};
+
+exports.getSetting = function(key){
+  return new Promise((resolve, reject) => {
+    pool.connect().then(client => {
+      client.query('SELECT trim(value) val FROM settings WHERE key = $1', [key])
+        .catch(e => {
+          client.release();
+          reject(e);
+        })
+        .then(res => {
+          client.release();
+          resolve(res.rows[0].val);
+        })
+    });
+  });
+};
