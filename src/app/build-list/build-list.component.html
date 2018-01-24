@@ -48,7 +48,7 @@
       <dx-chart [dataSource]="builds_duration" [customizePoint]="customizePoint">
         <dxi-series valueField="duration" name="Duration" tagField="result"></dxi-series>
         <dxo-common-series-settings argumentField="buildId" type="spline"></dxo-common-series-settings>
-        <dxi-value-axis>
+        <dxi-value-axis [min]="0">
           <dxo-label [customizeText]="customizeText"></dxo-label>
         </dxi-value-axis>
         <dxo-legend verticalAlignment="top" horizontalAlignment="center" itemTextPosition="right"></dxo-legend>
