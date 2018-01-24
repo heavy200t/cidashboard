@@ -1,4 +1,3 @@
-// TODO: Add pr number.
 // TODO: Add change list.
 import {Component, Input, OnInit} from '@angular/core';
 import {MongoService} from '../services/mongo.service';
@@ -17,6 +16,7 @@ export class BuildListComponent implements OnInit {
 
   @Input() job: Job;
   builds: Build[];
+  builds_duration: Build[];
   date: Date;
 
   constructor(
@@ -38,7 +38,7 @@ export class BuildListComponent implements OnInit {
         case 'SUCCESS': return 'blue.png';
         case 'UNSTABLE': return 'yellow.png';
         case 'FAILURE': return 'red.png';
-        default: console.log(build.result);
+        // default: console.log(build.result);
       }
     }
   }
@@ -97,6 +97,19 @@ export class BuildListComponent implements OnInit {
     this.router.navigate(['/result', build._id.jobName, build._id.buildId]);
   }
 
+  customizePoint(arg: any) {
+    // console.log(arg);
+    switch (arg.tag) {
+      case 'SUCCESS': return { image: {url: '../../assets/blue.png', width: 20, height: 20}, visible: true};
+      case 'UNSTABLE': return { image: {url: '../../assets/yellow.png', width: 20, height: 20}, visible: true};
+      case 'FAILURE': return { image: {url: '../../assets/red.png', width: 20, height: 20}, visible: true};
+    }
+  }
+
+  // getBuildById(buildId: string) {
+  //   return this.builds.find(b => b.buildId === buildId);
+  // }
+
   ngOnInit() {
     if (this.route.snapshot.params.hasOwnProperty('date'))  {
       this.date = new Date(this.route.snapshot.paramMap.get('date'));
@@ -105,6 +118,7 @@ export class BuildListComponent implements OnInit {
     }
     this.mongoService.getBuilds(this.job.name, this.date).subscribe(res => {
       this.builds = res;
+      this.builds_duration = this.builds.filter(b => b.building === false);
       this.builds.forEach(item => {
         item.buildId = item._id.buildId.toString();
       });

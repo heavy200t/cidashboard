@@ -11,7 +11,10 @@ import {HttpClientModule} from '@angular/common/http';
 import { JobListComponent } from './job-list/job-list.component';
 import { BuildListComponent } from './build-list/build-list.component';
 import {AccordionModule, ProgressbarModule} from 'ngx-bootstrap';
-import {DxChartModule, DxDataGridModule, DxLinearGaugeModule, DxPieChartModule} from 'devextreme-angular';
+import {
+  DxButtonModule, DxChartModule, DxDataGridModule, DxLinearGaugeModule,
+  DxPieChartModule
+} from 'devextreme-angular';
 
 
 
@@ -25,6 +28,7 @@ import {DxChartModule, DxDataGridModule, DxLinearGaugeModule, DxPieChartModule} 
   ],
   imports: [
     BrowserModule,
+    DxButtonModule,
     DxPieChartModule,
     DxLinearGaugeModule,
     DxDataGridModule,

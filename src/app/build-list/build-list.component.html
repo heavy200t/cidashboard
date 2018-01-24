@@ -39,14 +39,14 @@
                 <b>{{build.pass_percent}}%</b>
               </progressbar>
             </td>
-            <td><button (click)="gotoResult(build)" *ngIf="build.detail">Details</button></td>
+            <td colspan="2 "><button (click)="gotoResult(build)" *ngIf="build.detail">Details</button></td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="col-xs-4">
-      <dx-chart [dataSource]="builds">
-        <dxi-series valueField="duration" name="Duration"></dxi-series>
+      <dx-chart [dataSource]="builds_duration" [customizePoint]="customizePoint">
+        <dxi-series valueField="duration" name="Duration" tagField="result"></dxi-series>
         <dxo-common-series-settings argumentField="buildId" type="spline"></dxo-common-series-settings>
         <dxi-value-axis>
           <dxo-label [customizeText]="customizeText"></dxo-label>
