@@ -1,11 +1,40 @@
 'use strict';
+let request = require('request-promise');
+
 exports.sendRes = function(res, content) {
-  res.set({
-    'Access-Control-Allow-Origin': '*',
-    'Content-Type':'text/json',
-    'Encodeing':'utf8'
-  });
   res.send(content);
+};
+
+exports.timeCondition_pg = function(field, s, e){
+  /*
+Date query scope is [s, e).
+if s & e is not defined, it will query today's result.
+if only s or e is defined, it will query one day's result([s, s+1) or [e-1, e) )
+ */
+  let condition = [];
+
+  let start = new Date();
+  start = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+
+  if ( s !== undefined) {
+    start = new Date(Date.parse(s.replace(/-/g, "/")));
+  }
+
+  let end = new Date(start);
+  end.setDate(end.getDate() + 1);
+
+  if ( e !== undefined) {
+    end = new Date(Date.parse(e.replace(/-/g, "/")));
+    end.setDate(end.getDate() + 1);
+    if (s === undefined) {
+      start = new Date(end);
+      start.setDate(start.getDate() - 1);
+    }
+
+  }
+  condition.push({field: field, op: '>=', value: start});
+  condition.push({field: field, op: '<', value: end});
+  return condition;
 };
 
 exports.timeCondition = function(field, s, e){
@@ -59,7 +88,7 @@ let dateEnrich = function () {
     }
     for(let k in o) {
       if(new RegExp("("+ k +")").test(fmt)){
-        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length===1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
       }
     }
     return fmt;
@@ -92,6 +121,22 @@ let stringEnrich = function() {
     }
     return result;
   }
+};
+
+exports.queryJenkinsSetting = function(url) {
+  let req_opt = {
+    uri: '{0}/api/json'.format(url),
+    json: true
+  };
+  return new Promise((resolve, reject) => {
+    request(req_opt)
+      .then(res => {resolve(res)})
+      .catch(err => {reject(err)});
+  });
+};
+
+exports.calcPercent = function (v, t) {
+  return Math.round(v * 10000 / t) / 100;
 };
 
 exports.init = function () {

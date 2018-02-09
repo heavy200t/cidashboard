@@ -77,7 +77,8 @@ exports.getJobs = function (req, res) {
         db.collection('jobs').find().toArray()
           .then(result => {
             db.close();
-            utils.sendRes(res, result);
+            res.send(result);
+            // utils.sendRes(res, result);
           });
       });
 };

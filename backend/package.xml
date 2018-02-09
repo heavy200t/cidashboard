@@ -35,6 +35,10 @@
       <outputDirectory>database</outputDirectory>
     </fileSet>
     <fileSet>
+      <directory>graphql</directory>
+      <outputDirectory>graphql</outputDirectory>
+    </fileSet>
+    <fileSet>
       <directory>node_modules</directory>
       <outputDirectory>node_modules</outputDirectory>
     </fileSet>

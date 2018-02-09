@@ -1,4 +1,7 @@
 const consts = require('../config/consts');
+// noinspection JSUnusedLocalSymbols
+// noinspection JSUnusedLocalSymbols
+// noinspection JSUnusedLocalSymbols
 const {Builder, By, Key, until, Capabilities}  = require('selenium-webdriver');
 
 exports.run = function () {
@@ -21,7 +24,9 @@ exports.run = function () {
       .then(driver.sleep(20000))
       .then(
         () => {
+          // noinspection JSUnusedLocalSymbols
           driver.takeScreenshot().then(function (image,err) {
+            // noinspection JSUnusedLocalSymbols
             require('fs').writeFile(screenshotFileName,image, 'base64', function (err) {
             });
           });
